@@ -40,8 +40,12 @@ router.post('/register', function (req, res) {
 	}
 	else {
 		//checking for email and username are already taken
-		User.findOne({ username: username }, function (err, user) {
-			User.findOne({ email: email }, function (err, mail) {
+		User.findOne({ username: { 
+			"$regex": "^" + username + "\\b", "$options": "i"
+	}}, function (err, user) {
+			User.findOne({ email: { 
+				"$regex": "^" + email + "\\b", "$options": "i"
+		}}, function (err, mail) {
 				if (user || mail) {
 					res.render('register', {
 						user: user,
