@@ -1,18 +1,15 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const { ensureAuthenticated } = require('../config/auth');
 
-// Get Homepage
-router.get('/', ensureAuthenticated, function(req, res){
-	res.render('index');
-});
+// Welcome Page
+router.get('/', (req, res) => res.render('welcome'));
 
-function ensureAuthenticated(req, res, next){
-	if(req.isAuthenticated()){
-		return next();
-	} else {
-		//req.flash('error_msg','You are not logged in');
-		res.redirect('/users/login');
-	}
-}
+// Dashboard
+router.get('/dashboard', ensureAuthenticated, (req, res) =>
+  res.render('dashboard', {
+    user: req.user
+  })
+);
 
 module.exports = router;
