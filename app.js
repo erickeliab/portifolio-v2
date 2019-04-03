@@ -11,7 +11,7 @@ const app = express();
 require('./config/passport')(passport);
 
 // DB Config
-const db = require('./config/keys').MongoURI;
+const db = require('./config/keys').mongoURI;
 
 // Connect to MongoDB
 mongoose
