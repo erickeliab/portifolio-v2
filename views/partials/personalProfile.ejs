@@ -1,0 +1,52 @@
+<div class="container col-lg- 12  col-md-12" style="padding-bottom: 3em;">
+    <h2 class="text-dark">Personal Details</h2>
+</div>
+<div class="container col-lg- 12  col-md-12 row bg-white">
+    <div class="col-md-4 col-lg-4 col-xl-4 mt-3">
+        <center>           
+             <span><h4>Picture</h4></span>
+        </center>
+            <div class="container">
+            <div class="container">
+                <img src="../images/fullstack.png" class="img img-responsive img-block circle" alt="">
+
+            </div>
+            </div>
+
+        </div>
+
+        <div class="col-md-4 col-lg-4 col-xl-4 mt-3">
+             <span><h4>Profile</h4></span>
+             <ul class="list-group">
+                 <li class="list-group-item">Full Name: <%= data.profile[0].firstname %> <%= data.profile[0].lastname %> </li>
+                 <li class="list-group-item"> Age: <%= 2020 -1998 %></li>
+                 <li class="list-group-item"> Job:  <% data.profile[0].Job.forEach(J => {
+                    %>
+                    
+                    <%= J  %> /
+                  
+                  <%
+                  });
+
+                  %> </li>
+                 <li class="list-group-item"> Nationality:  <%= data.profile[0].Nationality %></li>
+                 <li class="list-group-item"> Marital Status: Single</li>
+             </ul>
+
+         </div>
+
+         <div class="col-md-4 col-lg-4 col-xl-4 mt-3">
+                <span><h4>Hobbies</h4></span>
+                <ul class="list-group">
+                    <% data.profile[0].Hobbies.forEach(hobby => { %>
+                        <li class="list-group-item">  <%= hobby %> </li>
+                      
+                        <%  });  %> 
+                    <li class="list-group-item">Coding</li>
+                    
+                
+                    
+                </ul>
+ 
+            </div>
+</div>

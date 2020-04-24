@@ -1,0 +1,95 @@
+
+<!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
+    <div class="wrapper">
+
+        <!-- BarS -->
+        <%- include('../../partials/admin-bars') -%>
+      
+      
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+      
+      
+          <!-- Content Header (Page header) -->
+          <%- include('../../partials/admin-header') -%>
+      
+          <!-- /.content-header -->
+      
+          <!-- Main content -->
+          <section class="content">
+            <div class="container-fluid">
+              <!-- Small boxes (Stat box) -->
+              
+              <!-- FORM TO ADD A NEW SKILL -->
+              <%- include('../../partials/messages') -%>
+
+              <form role="form" action="/skills" method="POST">
+                <div class="card-body">
+                  <div class="form-group">
+                    <label for="skillname">Skill Name</label>
+                    <input type="text" name="skillname" class="form-control" id="skillname" placeholder="Enter the new skill. Example Java">
+                  </div>
+                 
+                      <!-- select -->
+                      <div class="form-group">
+                        <label>Competence</label>
+                        <select name="competence" class="custom-select">
+                          <% CompLevel.forEach(level => {
+                            %>
+                           
+                            <option value="<%= level %>" > <%= level %> </option>
+                           
+                         
+                          <%
+                          });
+
+                          %>
+                         
+                          
+                        </select>
+                      </div>
+                   
+                  <div class="form-group">
+                    <label for="experience">Experience from</label>
+                    <input type="text" class="form-control" id="experience" name="experience" placeholder="example.. 2015">
+                  </div>
+                  <!-- /.input group -->
+                </div>
+                  <!-- /.form group -->
+                
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+
+
+              <!-- /END OF FORM -->
+      
+
+
+      
+      
+
+              <!-- Main row -->
+              <div class="row">
+                <!-- Left col -->
+                <section class="col-lg-7 connectedSortable">
+               
+          </section>
+          <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <%- include('../../partials/admin-footer') -%>
+      
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+          <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+      </div>
+      <!-- ./wrapper -->
+      
+      

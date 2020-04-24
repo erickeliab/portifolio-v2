@@ -1,0 +1,52 @@
+<%- include('partials/menu') -%>
+
+<div class="super_container">
+
+	<!-- Header -->
+
+    <%- include('partials/header') -%>
+
+    <div class="" style="margin-top: 10em;"></div>
+    <center><h1 class="text-dark">Contact Me</h1></center>
+    <div class="bg-light" style="padding-top: 2em; border-top-style: groove; border-top-color: lightgreen;">
+		  <div class="container col-lg- 12  col-md-12" style="padding-bottom: 3em;">
+				<h2 class="text-dark">Contact Details</h2>
+		 </div>
+		<div class="container col-lg- 12  col-md-12 row bg-white">
+				<div class="col-md-4 col-lg-4 col-xl-4 mt-3">
+						<span><h4>Email Address</h4></span>
+						<ul class="list-group">
+							<li class="list-group-item"><%= cv[0].Email %> </li>
+							<li class="list-group-item"><%= cv[0].Email %> </li>
+						</ul>
+		 
+					</div>
+		 
+					<div class="col-md-4 col-lg-4 col-xl-4 mt-3">
+						 <span><h4>Post Address</h4></span>
+						 <ul class="list-group">
+							 <li class="list-group-item"><%= cv[0].Address %></li>
+							 <li class="list-group-item"> Mzumbe</li>
+						 </ul>
+		  
+					 </div>
+
+					 <div class="col-md-4 col-lg-4 col-xl-4 mt-3">
+							<span><h4>Mobile Phone</h4></span>
+							<ul class="list-group">
+								<li class="list-group-item"> <%= cv[0].Telephone %></li>
+								<li class="list-group-item"><%= cv[0].Telephone %></li>
+							</ul>
+			 
+						</div>
+		  </div>
+		
+			<!-- example-->
+			
+                <br>
+                <%- include('partials/footer') -%>
+            </div>
+   
+
+</div>
+

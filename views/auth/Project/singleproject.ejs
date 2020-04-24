@@ -1,0 +1,169 @@
+
+<!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
+  <div class="wrapper">
+
+    <!-- BarS -->
+    <%- include('../../partials/admin-bars') -%>
+  
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <%- include('../../partials/admin-header') -%>
+  
+    <!-- /.content-header -->
+
+
+
+  <!-- THE PAGE CONTENTS -->
+  
+
+  <!-- Main content -->
+  <section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Projects Detail</h3>
+  <h3 class="text-primary text-center"><%= project.projectname%> </h3>
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+            <i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+            <i class="fas fa-times"></i></button>
+        </div>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-12 col-md-12 col-lg-8 order-1 order-md-2">
+            <div class="row">
+              <div class="col-12 col-sm-4">
+                <div class="info-box bg-primary text-white">
+                  <div class="info-box-content">
+                    <span class="info-box-text text-center text-light ">Tools</span>
+                    <span class="info-box-number text-center text-light  mb-0">
+                      <%
+                      let count = 0;
+                       project.tools.forEach(element => {
+                        count++
+                      }); 
+                       %> 
+                       <%= count %> 
+                    </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="info-box bg-danger">
+                  <div class="info-box-content">
+                    <span class="info-box-text text-center text-light ">Deadline</span>
+                    <span class="info-box-number text-center text-light  mb-0">
+                      <%= project.deadline.toString().substring(0,15) %> </span>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="info-box bg-primary">
+                  <div class="info-box-content">
+                    <span class="info-box-text text-center text-light ">Project Budget</span>
+                     
+                    <span class="info-box-number text-center text-light  mb-0">
+                      <%= project.budget %> /= <span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+            <h3 class="text-primary">Description</h3>
+            <p class="p-3 m-2 text-muted">From: 
+              <%= project.initialdate.toString().substring(0,15) %> </p>
+            <p class="text-muted">
+              <%= project.description%> 
+            </p>
+            <br>
+            <div class="text-center mt-5 mb-3">
+              <a href="/projects/edit/<%- project.id %>" class="btn btn-sm btn-primary">Update</a>
+            </div>
+          </div>
+          <div class="col-12 col-md-12 col-lg-4 order-2 order-md-2">
+           <h3 class="text-primary">Links</h3>
+            <div class="text-muted p-4">
+              <p class="text-sm">GitHub
+                <a href="<%= project.Links[0] %>">here</a>
+              </p>
+              <p class="text-sm">Production
+                <a href="<%= project.Links[1] %>">here</a>
+              </p>
+            </div>
+
+            <h3 class="text-primary">Tools & Technologies</h3>
+            <ul class="list-unstyled">
+              <% project.tools.forEach(tool => { %>
+                <li class="list-item bg-light p-2 m-1"><%= tool %> </li>
+              <% }) %>
+              
+              
+            </ul>
+            
+          </div>
+        </div>
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+  </section>
+  
+
+   <!-- Main content -->
+   <section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Screenshorts</h3>
+
+        <div class="card-tools">
+          <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+            <i class="fas fa-minus"></i></button>
+          <button type="button" class="btn btn-tool" data-card-widget="remove" data-toggle="tooltip" title="Remove">
+            <i class="fas fa-times"></i></button>
+        </div>
+      </div>
+      <div class="card-body">
+       
+      </div>
+      <!-- /.card-body -->
+    </div>
+    <!-- /.card -->
+
+  </section>
+  <!-- THE EN OF THE PAGE CONTENT -->
+     
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          
+  
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+           
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%- include('../../partials/admin-footer') -%>
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+  
+  

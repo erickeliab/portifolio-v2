@@ -1,0 +1,64 @@
+<%- include('partials/menu') -%>
+
+<div class="super_container">
+
+	<!-- Header -->
+
+    <%- include('partials/header') -%>
+
+    <div class="" style="margin-top: 10em;"></div>
+    <center><h1 class="text-dark">Services</h1></center>
+    <div class="bg-light" style="padding-top: 2em; border-top-style: groove; border-top-color: lightgreen;">
+            <div class="container" id="servicesCont">
+                    <!-- section 1 -->
+                    <div class="container row col-md-12 col-lg-12 col-xl-12 mt-5 ">
+                     <div class="contaier col-md-6 col-12 col-lg-6">
+                                <img src="images/uiux2.jpeg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+                        </div>
+                         <div class="contaier col-md-6 col-12 col-lg-6">
+                             <br>
+                             <h2 class="text-dark service"><%= services[0].head %></h2>
+                             <p><%= services[0].bodytext %></p>
+                                <button class="btn btn-success float-left mt-2 mb-2">Skills</button>
+
+                            </div>
+                    </div>
+                    <!-- section 2 -->
+                    <div class="container row col-md-12 col-lg-12 col-xl-12 mt-5 bg-white">
+                           
+                                <div class="contaier col-md-6 col-12 col-lg-6">
+                                    <br>
+                                    <h2 class="text-dark service"><%= services[1].head %></h2>
+                                    <p><%= services[1].bodytext %></p><button class="btn btn-success float-left mt-2 mb-2">Skills</button>
+                                   </div>
+                                   <div class="contaier col-md-6 col-12 col-lg-6">
+                                       <br><br>
+                                        <img src="images/backend.jpeg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+                                </div>
+                           </div>
+                           <!-- section 3 -->
+            
+                           <div class="container row col-md-12 col-lg-12 col-xl-12 mt-5 bg-white">
+                               
+                                <div class="contaier col-md-6 col-12 col-lg-6">
+                                    <br>
+                                    <h2 class="text-dark service"><%= services[2].head %></h2>
+                                        <br>
+                                           <img src="images/frontend.jpeg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+                                   </div>
+                                    <div class="contaier col-md-6 col-12 col-lg-6">
+                                        <br>
+                                        
+                                        <p> <p><%= services[1].bodytext %></p></p>
+                                            <button class="btn btn-success float-left mt-2 mb-2">Skills</button>
+
+                                       </div>
+                               </div>
+                </div>
+                <br>
+                <%- include('partials/footer') -%>
+            </div>
+   
+
+</div>
+

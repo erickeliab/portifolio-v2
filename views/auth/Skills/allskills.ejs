@@ -1,0 +1,177 @@
+
+<!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
+  <div class="wrapper">
+
+    <!-- BarS -->
+    <%- include('../../partials/admin-bars') -%>
+  
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+  
+  
+      <!-- Content Header (Page header) -->
+      <%- include('../../partials/admin-header') -%>
+  
+      <!-- /.content-header -->
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          <!-- THE TABLE OF ALL THE SKILLS -->
+
+
+          <div class="col-md-12 container">
+            <div class="card">
+              <div class="card-header">
+                <h3 class="card-title">Skills</h3>
+
+                <div class="card-tools">
+                  <ul class="pagination pagination-sm float-right">
+                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
+                  </ul>
+                </div>
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body p-0 table-responsive">
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <th style="width: 10px">#</th>
+                      <th>Skill</th>
+                      <th style="width: 40px">Experience</th>
+
+                      <th>Competence</th>
+                      <th>Action</th>
+                     
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <%
+                      skills.forEach(skill => {
+                        %>
+
+                        <tr>
+                      <td><%= skill.id %></td>
+                      <td><%= skill.skillname %></td>
+                      <td><span class=""><%= skill.experience %></span></td>
+                      <td>
+                        
+                        <%
+                        if (skill.competence == 'Expert') {
+                          %>
+
+                          <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-danger" style="width: 100%"></div>
+                          </div>
+                          <%
+                         
+                        } 
+                          %>
+                         
+                     
+                          <%
+                        if (skill.competence == 'Profficient') {
+                          %>
+
+                          <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-success" style="width: 80%"></div>
+                          </div>
+                          <%
+                         
+                        } 
+                          %>
+                         
+
+                        
+                        
+                        <%
+                        if (skill.competence == 'Competent') {
+                          %>
+
+                          <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-success" style="width: 60%"></div>
+                          </div>
+                          <%
+                         
+                        } 
+                          %>
+                         
+                       
+
+                          <%
+                        if (skill.competence == 'Advanced Beginner') {
+                          %>
+
+                          <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-success" style="width: 40%"></div>
+                          </div>
+                          <%
+                         
+                        } 
+                          %>
+
+
+                          <%
+                        if (skill.competence == 'Novice') {
+                          %>
+
+                          <div class="progress progress-xs">
+                            <div class="progress-bar progress-bar-success" style="width: 20%"></div>
+                          </div>
+                          <%
+                         
+                        } 
+                          %>
+                      </td>
+                      <td><span class=""><%= skill.competence %></span></td>
+
+                      <td>
+                        <a href="/skills/<%= skill.id %>" class="text-danger">View</a>
+                        <a href="/skills/edit/<%= skill.id %>">Edit</a>
+                        </td>
+                    </tr>
+
+
+                        <%
+                        
+                      });
+                      
+                      %>
+                   
+                    
+                  </tbody>
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+
+          <!-- END OF LIST OF SKILLS ARRAY -->
+  
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+           
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%- include('../../partials/admin-footer') -%>
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+  
+  

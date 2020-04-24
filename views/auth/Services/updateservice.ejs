@@ -1,0 +1,135 @@
+
+<!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
+  <div class="wrapper">
+
+    <!-- BarS -->
+    <%- include('../../partials/admin-bars') -%>
+  
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+  
+  
+      <!-- Content Header (Page header) -->
+      <%- include('../../partials/admin-header') -%>
+  
+      <!-- /.content-header -->
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container-fluid">
+          <!-- Small boxes (Stat box) -->
+          
+          <!-- FORM TO ADD A NEW SKILL -->
+
+          <div class="card-header">
+            <h3 class="card-title">Add new Service</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <form role="form" action="/servicez/<%- service.id %>?_method=PUT" enctype="multipart/form-data" method='POST'>
+            <div class="card-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Service Name</label>
+                <input type="text" name="s_name" value="<%- service.s_name %>" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Service Label</label>
+                <input type="text" name="head" value="<%- service.head%>" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Description</label>
+                <textarea name="bodytext" id="" value="<%- service.bodytext %>" class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <img src="<%= service.imgpath %>" alt="service image" class="img thumbnail p-1" style="width: 6rem;">
+              </div>
+              <div class="form-group">
+                <label for="exampleInputFile">Image File</label>
+                <div class="input-group">
+                  <div class="custom-file">
+                    <input type="file" name="imgpath" class="custom-file-input" id="exampleInputFile">
+                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                  </div>
+                  <div class="input-group-append">
+                    <span class="input-group-text" id="">Upload</span>
+                  </div>
+                </div>
+              </div>
+              
+                <label for="hidden" class="text-dark" style="border:none;">Check the skills</label>
+                
+              </div>
+              <div class="row container mt-1">
+                <% 
+                var temp;
+                  for (let skill of skills){
+  
+                    
+                    for (let tool of service.tools){
+                 
+  
+                    if (skill.skillname === tool) {
+                      
+                   
+                 %> 
+                  
+                
+                 <div class="form-check container col-md-4">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1" checked name="<%= tool %>">
+                  <label class="form-check-label" for="exampleCheck1"><%= tool %></label>
+                </div>
+                
+               
+                <% temp = tool;
+              }  } 
+              
+              if (temp != skill.skillname) {
+                
+              
+              %> 
+  
+                <div class="form-check container col-md-4">
+                  <input type="checkbox" class="form-check-input" id="exampleCheck1" name="<%= skill.skillname %>">
+                  <label class="form-check-label" for="exampleCheck1"><%= skill.skillname %></label>
+                </div>
+  
+                
+                <% } } %> 
+              
+            </div>
+            <!-- /.card-body -->
+          </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+
+
+          <!-- /END OF FORM -->
+  
+
+
+  
+  
+
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+           
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%- include('../../partials/admin-footer') -%>
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+  
+  

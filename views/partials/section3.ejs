@@ -1,0 +1,50 @@
+<div class="site-blocks-cover inner-page py-5 bg-dark" data-aos="fade" style="margin-top:-20px;">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 ml-auto order-md-2 align-self-start">
+              <div class="site-block-cover-content">
+              <h2 class="sub-title text-success">Skills</h2>
+              <h1 class="text-success">Technologies and Tools</h1>
+              <br>
+              <img src="images/competence.jpeg" class="mb-10 img img-rounde" alt="">
+            
+              </div>
+            </div>
+            <div class="col-md-6 order-1 align-self-end">
+             
+                    <br>
+                          <table class="table table-hover table-dark">
+                                <thead>
+                                  
+                                  <tr>
+                                    
+                                    <th scope="col"></th>
+                                    <th scope="col">Level Of Competence</th>
+                                    <th scope="col">Experience(years)</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <% data.skills.forEach(skill => {
+                                    %>
+                                    <tr>
+                                    <td><%= skill.skillname %></td>
+                                    <td><%= skill.competence %></td>
+                                    <td><%= skill.experience %></td>
+                                  </tr>
+                                  <%
+                                  });
+
+                                  %>
+                                  
+
+                                 
+                               
+                                  
+                                </tbody>
+                              </table>
+                              <br>              <p><a href="#" class="btn btn-success mt-20 rounded-0">More</a></p>
+
+            </div>
+          </div>
+        </div>
+      </div>

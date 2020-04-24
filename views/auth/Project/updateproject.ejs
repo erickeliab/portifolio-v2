@@ -1,0 +1,179 @@
+
+<!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
+  <div class="wrapper">
+
+    <!-- BarS -->
+   
+<!-- <body class="hold-transition sidebar-mini layout-fixed"> -->
+  <div class="wrapper">
+
+    <!-- BarS -->
+    <%- include('../../partials/admin-bars') -%>
+  
+  
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+  
+  
+      <!-- Content Header (Page header) -->
+      <%- include('../../partials/admin-header') -%>
+  
+      <!-- /.content-header -->
+  
+      <!-- Main content -->
+      <section class="content">
+        <div class="container col-md-9 col-lg-9 col-xl-9 card">
+          <!-- Small boxes (Stat box) -->
+          
+          <!-- FORM TO ADD A NEW SKILL -->
+
+          <div class="card-header">
+            <h3 class="card-title">Add new Project</h3>
+          </div>
+          <!-- /.card-header -->
+          <!-- form start -->
+          <div class="card-body">
+
+
+          <form role="form" action="/projects/<%- project.id %>?_method=PUT" method="POST">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="Projecttitle">Project Name</label>
+                <input type="text" name="projectname" class="form-control" id="Projecttitle" value="<%- project.projectname %> ">
+              </div>
+              <div class="form-group">
+                <label for="desc">Description</label>
+                <textarea name="description" id="desc" class="form-control"  placeholder="<%- project.description %> " value="<%- project.description %> "  > </textarea>
+              </div>
+              <div class="form-group">
+                <label for="budget">Project Budget</label>
+                <input type="text" class="form-control" id="Projecttitle" value="<%- project.budget %> " name="budget">
+              </div>
+
+              <div class="form-group">
+                <label for="initialdate">Project initiation</label>
+                <input type="text" class="form-control" id="initialdate" value="<%- project.initialdate %> " name="initiation">
+              </div>
+
+              <div class="form-group">
+                <label for="deadline">Project Deadline</label>
+                <input type="text" class="form-control" id="deadline" value="<%- project.deadline %> " name="deadline">
+              </div>
+
+              <div class="form-group">
+                <label for="git">GitHub</label>
+                <input type="text" class="form-control" id="git" value="<%- project.github %> " name="github">
+              </div>
+             
+              <div class="form-group">
+                <label for="prod">Production</label>
+                <input type="text" class="form-control" id="prod" value="<%- project.production %> " name="production">
+              </div>
+
+              <div class="form-group">
+                <label for="">Completed %</label>
+                <select class="custom-select " data-size="5"  data-style="btn-default btn-lg" name="completed">
+                
+                  <% for( i=0; i < 100; i++){
+
+                   %> 
+                   <option <% i ==  project.completed ? 'selected' : '' %> > <%= i %>  </option>
+                  <% } %> 
+                
+                </select>
+              </div>
+              
+            
+              
+              <label for="hidden" class="text-dark" style="border:none;">Check the tool</label>
+
+              <div class="row container mt-1">
+              <% 
+              var temp;
+                for (let skill of skills){
+
+                  
+                  for (let tool of project.tools){
+               
+
+                  if (skill.skillname === tool) {
+                    
+                 
+               %> 
+                
+              
+               <div class="form-check container col-md-4">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" checked name="<%= tool %>">
+                <label class="form-check-label" for="exampleCheck1"><%= tool %></label>
+              </div>
+              
+             
+              <% temp = tool;
+            }  } 
+            
+            if (temp != skill.skillname) {
+              
+            
+            %> 
+
+              <div class="form-check container col-md-4">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" name="<%= skill.skillname %>">
+                <label class="form-check-label" for="exampleCheck1"><%= skill.skillname %></label>
+              </div>
+
+              
+              <% } } %> 
+              
+            </div>
+            <!-- /.card-body -->
+          </div>
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+
+
+          <!-- /END OF FORM -->
+  
+        </div>
+
+  
+  
+        </div>
+           
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+    <%- include('../../partials/admin-footer') -%>
+  
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+  
+  
+          
+  
+          <!-- Main row -->
+          <div class="row">
+            <!-- Left col -->
+            <section class="col-lg-7 connectedSortable">
+           
+      </section>
+      <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+   
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+      <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+  </div>
+  <!-- ./wrapper -->
+  
+  
