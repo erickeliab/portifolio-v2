@@ -2,11 +2,12 @@ const express = require('express');
 const router = express.Router();
 let mongoose = require('mongoose');
 const methodOverride = require('method-override');
+const { ensureAuthenticated } = require('../../config/auth');
 
 //importing the model
 let Project = require('../../Models/Project');
 let Skills = require('../../Models/Skill');
-
+router.use(ensureAuthenticated);
 
 router.use(methodOverride('_method'));
 
@@ -50,8 +51,12 @@ router.get('/add', (req,res) => {
 //ADDING A NEW PROJECT
 router.post('/', (req,res) => {
 
-
+    var errors = [];
     const tools = [];
+    const { github, production, projectname, completed,budget,initiation,deadline,description } = req.body;
+
+    if ( github && production && projectname && completed && budget && initiation && deadline &&description){
+
     // return res.send(req.body);
     Project.countDocuments({}, function(err,count){
         county = count;
@@ -61,7 +66,6 @@ router.post('/', (req,res) => {
        
         //distructuring
 
-        const { github, production, projectname, completed,budget,initiation,deadline,description } = req.body;
 
 
          //creating an array of tools
@@ -150,6 +154,24 @@ router.post('/', (req,res) => {
   
 
     });
+
+ } else {
+
+    Skills.find({}, (err,skills) => {
+        if (err) {
+           
+            res.status(404,{msg: 'The message were not found'});
+        }else {
+            errors.push({
+                msg : 'fill all the required fields'
+            });
+            res.render('auth/Project/addproject',{skills,errors});
+        }
+       
+    })
+        
+       
+    }
 });
 
 //GETTING A SINGLE PROJECT
@@ -205,11 +227,12 @@ router.get('/edit/:id', function(req,res){
 
 //UPDATING A SPECIFIED PROJECT
 router.put('/:id', (req,res) => {
-
+    var errors = [];
     const tools = [];
     const { github, production, projectname, completed,budget,initiation,deadline,description } = req.body;
     const keys = Object.keys(req.body);
 
+    if ( github && production && projectname && completed && budget && initiation && deadline &&description){
     Project.findOne({'id': req.params.id}, function(err,p){
         if (err) throw err;
 
@@ -267,7 +290,37 @@ router.put('/:id', (req,res) => {
   
 
 
+} else {
+
+    Skills.find({}, (err,skills) => {
+        if (err) {
+           
+            res.status(404,{msg: 'The message were not found'});
+        }else {
+           Project.find({}, (err, projects) =>{
+            if (err) {
+    
+                throw err;
+            } else {
+                errors.push({
+                    msg : 'fill all the required fields'
+                });
+               let projectArry = projects.filter( (project) => project.id == req.params.id);
+    
+                project = projectArry[0];
+                res.render('auth/Project/updateproject',{skills,project, errors,}); 
+            }
+         
+    
+            
+            
+    
+           });
+        }
+       
+    });
    
+}
    
 });
 
@@ -277,7 +330,7 @@ router.delete('/:id', (req,res) => {
         if (err) throw err;
 
         if (success) {
-            res.send('successfuly deleted ');
+             res.redirect('/projects');
         }
     });
 })

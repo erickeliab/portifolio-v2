@@ -20,8 +20,8 @@ var ProfileSchema = new Schema({
         required : true
   
       }, 
-    Bithday : {
-        type :  Date,
+      Birthday : {
+        type :  String,
         required : true
   
       }, 
@@ -45,6 +45,31 @@ var ProfileSchema = new Schema({
         required : true
   
       }, 
+      Education :  {
+        type :  String,
+        required : true
+  
+      },
+      Location :  {
+        type :  String,
+        required : true
+  
+      },
+      Note :  {
+        type :  String,
+        required : true
+  
+      },
+      JobTitle :  {
+        type :  String,
+        required : true
+  
+      }, 
+      profileimg :  {
+        type :  String,
+        required : true
+  
+      },    
 
 });
 

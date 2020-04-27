@@ -3,7 +3,7 @@
     <div class="wrapper">
 
         <!-- BarS -->
-        <%- include('../partials/admin-bars') -%>
+        <%- include('../../partials/admin-bars') -%>
       
       
         <!-- Content Wrapper. Contains page content -->
@@ -11,26 +11,26 @@
       
       
           <!-- Content Header (Page header) -->
-          <%- include('../partials/admin-header') -%>
+          <%- include('../../partials/admin-header') -%>
       
           <!-- /.content-header -->
-      
           <!-- Main content -->
           <section class="content">
+            <a href="<%= pdf.path %>" class="btn btn-success">pdf</a>
+            <a href="/cv/edit/<%= pdf.id %>" class="btn btn-success">Update CV</a>
+<hr>
             <div class="container-fluid">
-              <!-- Small boxes (Stat box) -->
+            
               
-      
-              <!-- Main row -->
-              <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-7 connectedSortable">
+              <embed src="<%= pdf.path %>" class="col-md-12 col-12 col-lg-12 col-sm-12 col-xs-12" height="500">
+            </div>
+              
                
           </section>
           <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <%- include('../partials/admin-footer') -%>
+        <%- include('../../partials/admin-footer') -%>
       
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

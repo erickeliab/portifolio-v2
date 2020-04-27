@@ -27,6 +27,13 @@ var MessageSchema = mongoose.Schema({
             type : String,
             required : true,
         },
+        read : {
+            type : Boolean,
+            
+        },
+        deleted : {
+            type : Boolean
+        }
     
       
 });

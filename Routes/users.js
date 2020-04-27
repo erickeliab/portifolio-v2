@@ -5,6 +5,8 @@ const passport = require('passport');
 // Load User model
 const User = require('../Models/User');
 const { forwardAuthenticated } = require('../config/auth');
+const { ensureAuthenticated } = require('../config/auth');
+
 //index
 
 router.get('/',(req,res) => {
@@ -17,7 +19,7 @@ router.get('/',(req,res) => {
 router.get('/login', forwardAuthenticated, (req, res) => res.render('auth/login'));
 
 // Register Page
-router.get('/register', forwardAuthenticated, (req, res) => res.render('auth/register'));
+// router.get('/register',ensureAuthenticated, forwardAuthenticated, (req, res) => res.render('auth/register'));
 
 // Register
 router.post('/register', (req, res) => {

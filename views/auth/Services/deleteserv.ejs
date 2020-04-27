@@ -19,16 +19,54 @@
       <section class="content">
         <div class="container-fluid">
           <!-- Small boxes (Stat box) -->
-          
+          <div class="col-md-12 bg-warning text-light p-2 m-1">
+            <p class="text-dark">You are about to delete this particular service</p>
+            <p class="text-dark">Confirm the action</p>
+          </div>
   
-          <!-- Main row -->
-          <div class="row">
-            <!-- Left col -->
-            <section class="col-lg-7 connectedSortable">
+          <div class="container col-md-12" style="">
+            <div class="col-md-6">
+              <img src="<%= service.imgpath %>" alt="service image" class="img thumbnail  p-1" style="">
+
+
+            </div>
+
+            <div class="card-body">
+              <h3 class="card-title m-4 text-bold"><%= service.head %></h3>
+              
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Name: <%= service.s_name %></li>
+              <li class="list-group-item">Body: <%= service.bodytext %></li>
+
+            </ul>
+            <h4 class="m-3 text-bold">Tools</h4>
+            <ul class="list-group list-group-flush">
+              <% service.tools.forEach((tool) => {
+%>
+<li class="list-group-item"><%=tool %></li>
+
+<%
+
+              }) %> 
+              
+            </ul>
+            <div class="card-body">
+              <div class="col-md-12 p-2 m-1 bg-warning">
+            <p class="text-dark">Do you want to delete <h3 class="text-bold"><%= service.head %></h3></p>
+            <p class="text-dark">Click delete button below to parmanently delete</p>
+          </div>
+              <a href="/servicez" class="btn btn-primary">Back to Services</a>
+              <form action="/servicez/<%-service.id%>?_method=delete" method="post">
+                <input type="submit" class="btn btn-danger mt-2" value="Confirm Delete">
+              </form>
+            </div>
+          </div>
            
+        </div>
       </section>
       <!-- /.content -->
-    </div>
+   
     <!-- /.content-wrapper -->
     <%- include('../../partials/admin-footer') -%>
   

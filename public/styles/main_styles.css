@@ -243,11 +243,11 @@ section
 }
 .super_container_inner.active
 {
-	-webkit-transform: translateX(350px);
-	-moz-transform: translateX(350px);
-	-ms-transform: translateX(350px);
-	-o-transform: translateX(350px);
-	transform: translateX(350px);
+	-webkit-transform: translateX(250px);
+	-moz-transform: translateX(250px);
+	-ms-transform: translateX(250px);
+	-o-transform: translateX(250px);
+	transform: translateX(250px);
 }
 .super_overlay
 {
@@ -337,11 +337,11 @@ section
 }
 .header.active
 {
-	-webkit-transform: translateX(350px);
-	-moz-transform: translateX(350px);
-	-ms-transform: translateX(350px);
-	-o-transform: translateX(350px);
-	transform: translateX(350px);
+	-webkit-transform: translateX(250px);
+	-moz-transform: translateX(250px);
+	-ms-transform: translateX(250px);
+	-o-transform: translateX(250px);
+	transform: translateX(250px);
 }
 .header_overlay
 {
@@ -576,8 +576,8 @@ section
 {
 	position: fixed;
 	top: 0;
-	left: -350px;
-	width: 350px;
+	left: -250px;
+	width: 250px;
 	height: 100vh;
 	background: #f8f8f8;
 	padding-left: 40px;

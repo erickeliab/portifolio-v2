@@ -1,0 +1,63 @@
+<div class="footer_content bg-white" style="margin-bottom: -80px;">
+    <div class="container">
+        <div class="row">
+            
+            <!-- About -->
+          
+              <!-- Projects -->
+              <div class="col-lg-8 card bg-success mt-4">
+                  <br><br>
+                
+                    <center><span style="font-size: 3em;" class="text-dark"><b><%= project.projectname %> </b></span></center>
+                                <div class="container">
+                    
+                                        <table class="table table-hover">
+                                                <thead class="bg-dark">
+                                                  <tr>
+                                                    
+                                                    <th scope="col">Project</th>
+                                                  
+                                                    <th scope="col"></th>
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                  <td>Name</td> <td><%= project.projectname %>  </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Completed</td> <td><%= project.completed %>% </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Tools</td> <td><% project.tools.forEach(tool => { %>                 
+                                                                                      <%= tool %>
+                                                    <% }); %> </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Github Repo</td> <td><%= project.Links[0] %> </td>
+                                                </tr>
+                                                <tr>
+                                                  <td>Production</td> <td><%= project.Links[1] %> </td>
+                                                </tr>
+                                                </tbody>
+                                              </table>
+                                              <br> 
+                                </div>                    
+                </div>
+
+            <!-- Projects -->
+           
+            <div class="col-lg-4 footer_col ">
+                <div class="footer_about">
+                    
+                    <div class="footer_about_text" >
+                      <h2>Description</h2>
+                      <p class="text-dark"><%= project.description %> </p>
+                      </div>
+                    <br>              <p><a href="/projectz" class="btn btn-success mt-20 rounded-0">Back to list</a></p>
+
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>

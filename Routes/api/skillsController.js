@@ -8,6 +8,7 @@ const { ensureAuthenticated } = require('../../config/auth');
 
 
 router.use(methodOverride('_method'));
+router.use(ensureAuthenticated);
 
 //importing the model
 let Skill = require('../../Models/Skill');
@@ -186,7 +187,16 @@ router.put('/:id', (req,res) => {
                 
                 return res.redirect(`/skills/${id}`);
             }else {
-                return res.send('the values are missing');
+                var skill = [];
+                skill[0] = origin;
+                errors.push({
+                    msg : 'fill all the required fields'
+                });
+                res.render('auth/Skills/updateskill',{
+                    errors,
+                    CompLevel,
+                    skill
+                });
             }
             
       });
@@ -203,11 +213,11 @@ router.put('/:id', (req,res) => {
 //DELETING A SINGLE SKILL
 router.delete('/:id', (req,res) => {
 
-    Skill.findOneAndDelete({'_id' : req.params.id}, function(err,doc){
+    Skill.findOneAndDelete({'id' : req.params.id}, function(err,doc){
         if (err) throw err;
 
         if(doc){
-            res.send('successfully deleted');
+             res.redirect('/skills');
         }
     });
     

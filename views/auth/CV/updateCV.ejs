@@ -3,7 +3,7 @@
     <div class="wrapper">
 
         <!-- BarS -->
-        <%- include('../partials/admin-bars') -%>
+        <%- include('../../partials/admin-bars') -%>
       
       
         <!-- Content Wrapper. Contains page content -->
@@ -11,26 +11,45 @@
       
       
           <!-- Content Header (Page header) -->
-          <%- include('../partials/admin-header') -%>
+          <%- include('../../partials/admin-header') -%>
       
           <!-- /.content-header -->
       
           <!-- Main content -->
           <section class="content">
             <div class="container-fluid">
-              <!-- Small boxes (Stat box) -->
+              <%- include('../../partials/messages') -%>
+              <form role="form" action="/cv/1?_method=put" enctype="multipart/form-data" method='POST'>
+                <div class="card-body">
+                
+                  <div class="form-group">
+                    <label for="exampleInputFile">Image File</label>
+                    <div class="input-group">
+                      <div class="custom-file">
+                        <input type="file" name="imgpath" class="custom-file-input" id="exampleInputFile">
+                        <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                      </div>
+                      <div class="input-group-append">
+                        <span class="input-group-text" id="">Upload</span>
+                      </div>
+                    </div>
+                  </div>
+                 
+                <!-- /.card-body -->
+              </div>
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+              </form>
+    
+            </div>
               
-      
-              <!-- Main row -->
-              <div class="row">
-                <!-- Left col -->
-                <section class="col-lg-7 connectedSortable">
                
           </section>
           <!-- /.content -->
         </div>
         <!-- /.content-wrapper -->
-        <%- include('../partials/admin-footer') -%>
+        <%- include('../../partials/admin-footer') -%>
       
         <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">

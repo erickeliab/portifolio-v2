@@ -7,7 +7,7 @@ let upload = multer({dest : 'public/images/'});
 
 
 const { ensureAuthenticated } = require('../../config/auth');
-
+router.use(ensureAuthenticated);
 
 //importing the model
 let Service = require('../../Models/Service');
@@ -126,7 +126,12 @@ router.get('/delete/:s', (req,res) =>{
 router.post('/', upload.single('imgpath'), (req,res) => {
 
 
-    
+    var errors = [];
+    const { s_name , head ,bodytext ,imgpath } = req.body;
+
+    if (s_name  && head && bodytext && imgpath) {
+        
+   
 
     var keys = Object.keys(req.body);
     var tools = [];
@@ -192,7 +197,19 @@ router.post('/', upload.single('imgpath'), (req,res) => {
     })
     })
 
-  
+} else{
+    errors.push({msg : 'Fill in the form correcting, there are missing fields'});
+    Skill.find( (err,skills) => {
+        if (err) {
+            console.log('some error occured during querrying the skills');
+        } 
+        else {
+            res.render('auth/Services/addservice', {skills,errors});
+        }
+    });
+    
+           
+}
 
  } );
 
@@ -200,11 +217,15 @@ router.post('/', upload.single('imgpath'), (req,res) => {
 
 router.put('/:s', upload.single('imgpath'), (req,res) =>{
 
+
     //finding thhe service according to the passed parameter
-    
+    var errors = [];
+    const { s_name , head ,bodytext ,imgpath } = req.body;
+
+    if (s_name  && head && bodytext && imgpath) {
     const tools = [];
     const keys = Object.keys(req.body);
-    const {s_name,head,bodytext} = req.body;
+    
        
     Service.findOne({'id': req.params.s}, (err,newService) => {
         if (err) {
@@ -233,35 +254,71 @@ router.put('/:s', upload.single('imgpath'), (req,res) =>{
 
             };
 
-            
-            
-            let path = `images/${req.file.filename}`;
-            newService.imgpath = path;
-            newService.tools = tools;
-            newService.s_name = s_name;
-            newService.head = head;
-            newService.bodytext = bodytext;
+            if (req.file){
+                let path = `images/${req.file.filename}`;
+                newService.imgpath = path; 
+                newService.tools = tools;
+                newService.s_name = s_name;
+                newService.head = head;
+                newService.bodytext = bodytext;
+                newService.save();
+                
+            } else {
+                
+                newService.imgpath =  newService.imgpath;
+                newService.tools = tools;
+                newService.s_name = s_name;
+                newService.head = head;
+                newService.bodytext = bodytext;
 
-            newService.save();
+                newService.save();
+                
+            }
+          
+            
             // return res.send(newService);
 
              res.redirect('/servicez');
         })
         }
     });
+}else{
+        errors.push({msg : 'Fill in the form correcting, there are missing fields'});
+        Skill.find({}, (err,skills) => {
     
+            if (err) throw err;
+    
+            if (skills) {
+    
+                Service.findOne({'id' : req.params.s}, (err,service) => {
+                    if (err) {
+                        res.status(404,{msg: 'The services were not found'});
+                    }else {
+                       
+                       //res.send(req.params.s);
+                       console.log(service);
+                       res.render('auth/Services/updateservice',{service,skills,errors});
+                        
+                    }
+                });
+                
+            }
+           })
+        
+               
+    }
 });
   
 router.delete('/:s', (req,res) =>{
 
     //finding thhe service according to the passed parameter
    
-    Service.deleteOne({s_name : req.params.s}, (err,doc) => {
+    Service.deleteOne({id : req.params.s}, (err,doc) => {
         if(err) throw err;
         else {
-            res.send('successfull deleted');
+             res.redirect('/servicez');
         }
-    } );
+    });
     
        
     });

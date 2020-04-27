@@ -1,4 +1,4 @@
-<div class="footer_content">
+<div class="footer_content bg-white" style="margin-bottom: -80px;">
     <div class="container">
         <div class="row">
             
@@ -20,23 +20,23 @@
                         <p class="text-dark">Certifiied with Certificate of Advanced Secondary Education in 2017, Awarded Certificate of Ordinary Secondary Education in 2014, Certificate of Primary Education in 2010</p>
 
                       </div>
-                    <br>              <p><a href="#" class="btn btn-success mt-20 rounded-0">More</a></p>
+                    <br>              <p><a href="<%- data.cv[0].path %> " class="btn bg-white text-success mt-20 rounded-6" style="border-color: green; border: strong;">Carriculum Vitae</a><small class="text-success">.pdf</small></p>
 
                 </div>
             </div>
               <!-- Projects -->
-              <div class="col-lg-8 bg-light">
+              <div class="col-lg-8 card bg-success mt-4">
                   <br><br>
                 
                     <center><span style="font-size: 3em;" class="text-dark"><b>Projects</b></span></center>
                                 <div class="container">
                     
                                         <table class="table table-hover">
-                                                <thead>
+                                                <thead class="bg-dark">
                                                   <tr>
                                                     
                                                     <th scope="col">Project</th>
-                                                    <th scope="col">Tools </th>
+                                                  
                                                     <th scope="col">Completed</th>
                                                   </tr>
                                                 </thead>
@@ -44,14 +44,10 @@
                                                   <% data.projects.forEach(project => {
                                                     %>
                                                     <tr>
-                                                    <td><%= project.projectname%></td>
-                                                    <td><% project.tools.forEach(tool => { %>
-                                                      <%= tool %>
-                                                      <%
-                                                    });
+                                                    <td ><a href="/projectz/<%= project.id %>" style="display:block" class="text-white"><%= project.projectname%></a> </td>
+                                                    <td><a href="/projectz/<%= project.id %>" style="display:block" class="text-white"><%= project.completed %>%</a> </td>
+
                                                     
-                                                      %></td>
-                                                    <td><%= project.completed %>%</td>
                                                   </tr>
                                                   <%
                                                   }); 
@@ -60,7 +56,8 @@
                                                   
                                                 </tbody>
                                               </table>
-                                              <br>              <p><a href="#" class="btn btn-success mt-20 rounded-0">More</a></p>
+                                              <br>              <p>
+                                                <a href="/projectz" class="btn btn-success text-dark mt-20 mb-3 rounded-3" style="border-color: black">More</a></p>
                                               <br> 
                                 </div>                    
                 </div>

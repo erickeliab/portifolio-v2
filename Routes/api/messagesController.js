@@ -7,17 +7,64 @@ let Message = require('../../Models/Message');
 mongoose.set('useFindAndModify', false);
 // mongoose.set( 'useUnifiedTopology', true );
 
+const { ensureAuthenticated } = require('../../config/auth');
 
 //GETTING ALL THE MESSAGES
-router.get('/', (req,res) => {
+router.get('/',ensureAuthenticated, (req,res) => {
     //Querying through model
 
     Message.find({}, (err,messages) => {
     if (err) {
         res.status(404,{msg: 'The services were not found'});
     }else {
-       console.log(messages);
-        res.render('auth/Messages/allmessages',{messages});
+        let route = 'All'
+        res.render('auth/Messages/allmessages',{messages,route});
+    }
+})
+    
+  
+});
+
+
+//GETTING INBOX/NEW MESSAGES
+router.get('/inbox/',ensureAuthenticated, (req,res) => {
+    //Querying through model
+
+    Message.find({}, (err,message) => {
+    if (err) {
+        res.status(404,{msg: 'The services were not found'});
+    }else {
+        var messages = [];
+        message.forEach(function (mess) {
+            if (!mess.read){
+                messages.push(mess);
+            }
+        })
+        let route = 'Inbox'
+        res.render('auth/Messages/inbox',{messages,route});
+    }
+})
+    
+  
+});
+
+
+//GETTING TEMPORARY DELETED  MESSAGES
+router.get('/trash/',ensureAuthenticated, (req,res) => {
+    //Querying through model
+
+    Message.find({}, (err,message) => {
+    if (err) {
+        res.status(404,{msg: 'The services were not found'});
+    }else {
+        var messages = [];
+        message.forEach(function (mess) {
+            if (mess.deleted){
+                messages.push(mess);
+            }
+        })
+        let route = 'Trash'
+        res.render('auth/Messages/trash',{messages,route});
     }
 })
     
@@ -26,7 +73,7 @@ router.get('/', (req,res) => {
 
 
 //getting the form to addte message
-router.get('/add', (req,res) => {
+router.get('/add',ensureAuthenticated, (req,res) => {
     //Querying through model
 
     Message.find({}, (err,skills) => {
@@ -44,17 +91,39 @@ router.get('/add', (req,res) => {
 });
 
 // GETTING A SPECIFIC MESSAGE
-router.get('/:id', (req,res) => {
+router.get('/:id',ensureAuthenticated, (req,res) => {
 
-    Message.find({'id' : req.params.id}, (err,messages) => {
+    let newmsg = {};
+    newmsg.read = true;
+
+    Message.findOneAndUpdate({'id' : req.params.id}, newmsg, {upsert: true},(err,message) => {
         if (err) {
-            res.status(404);
+            throw err;
         }else {
-            let message = messages[0];
             res.render('auth/Messages/singlemessage',{message});
-            
+
         }
     });
+
+   
+});
+
+// MARK UNREAD MESSAGE
+router.get('/unread/:id',ensureAuthenticated, (req,res) => {
+
+    let newmsg = {};
+    newmsg.read = false;
+
+    Message.findOneAndUpdate({'id' : req.params.id}, newmsg, {upsert: true},(err,message) => {
+        if (err) {
+            throw err;
+        }else {
+             res.redirect('/messages');
+
+        }
+    });
+
+   
 });
 
 // CREATING NEW MESSAGE
@@ -71,7 +140,7 @@ router.post('/', function(req,res){
 });
 
 //UPDATING MESSAGE
-router.put('/:id', (req,res) => {
+router.put('/:id',ensureAuthenticated, (req,res) => {
 
     let newmsg = req.body;
 
@@ -79,14 +148,44 @@ router.put('/:id', (req,res) => {
         if (err) {
             throw err;
         }else {
-             res.send("you updated successful");
+            res.redirect('/messages');
+        }
+    });
+});
+
+// Deleting temporary A SPECIFIC MESSAGE
+router.get('/del/:id',ensureAuthenticated, (req,res) => {
+
+    let newmsg = {};
+    newmsg.deleted = true;
+
+    Message.findOneAndUpdate({'id' : req.params.id}, newmsg, {upsert: true},(err,message) => {
+        if (err) {
+            throw err;
+        }else {
+             res.redirect('/messages');
         }
     });
 });
 
 
+// reciver deleted A SPECIFIC MESSAGE
+router.get('/recover/:id',ensureAuthenticated, (req,res) => {
+
+    let newmsg = {};
+    newmsg.deleted = false;
+
+    Message.findOneAndUpdate({'id' : req.params.id}, newmsg, {upsert: true},(err,message) => {
+        if (err) {
+            throw err;
+        }else {
+            res.redirect('/messages');
+        }
+    });
+});
+
 //DELETING MESSAGE
-router.delete('/:id', (req,res) => {
+router.delete('/:id',ensureAuthenticated, (req,res) => {
 
     
 

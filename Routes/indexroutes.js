@@ -129,6 +129,182 @@ Project.find({}, (err,projects) => {
  
 });
 
+
+
+router.get('/projectz', function(req,res){
+
+    //GENERATING DATA FROM THE MODELS
+    //projects
+Project.find({}, (err,projects) => {
+    if (err) {
+        res.status(404,{msg: 'The services were not found'});
+    }else{
+        //services
+        Service.find({}, (err,services) => {
+            if (err) {
+                res.status(404,{msg: 'The services were not found'});
+            }else{
+                //skills
+                Skill.find({}, (err,skills) => {
+                    if (err) {
+                        res.status(404,{msg: 'The services were not found'});
+                    }else{
+                            //profile
+                            Profile.find({}, (err,profile) => {
+                                if (err) {
+                                    res.status(404,{msg: 'The services were not found'});
+                                }else{
+                                    //cv
+                                    Cv.find({}, (err,cv) => {
+                                        if (err) {
+                                            res.status(404,{msg: 'The services were not found'});
+                                        }else{
+                                            let data = {
+                                                skills,
+                                                projects,
+                                                profile,
+                                                cv,
+                                                services
+                                            }
+                                            console.log(data);
+                                            res.render('projects',{data});
+                                                // response.json(data);        
+                                        }
+
+                                    });
+                                }
+
+                            });
+                    }
+                
+                });
+            }
+        
+        });
+    }
+
+});
+ 
+});
+
+
+
+
+
+router.get('/projectz/:id', function(req,res){
+
+    //GENERATING DATA FROM THE MODELS
+    //projects
+Project.find({id : req.params.id}, (err,projects) => {
+    if (err) {
+        res.status(404,{msg: 'The services were not found'});
+    }else{
+        //services
+        Service.find({}, (err,services) => {
+            if (err) {
+                res.status(404,{msg: 'The services were not found'});
+            }else{
+                //skills
+                Skill.find({}, (err,skills) => {
+                    if (err) {
+                        res.status(404,{msg: 'The services were not found'});
+                    }else{
+                            //profile
+                            Profile.find({}, (err,profile) => {
+                                if (err) {
+                                    res.status(404,{msg: 'The services were not found'});
+                                }else{
+                                    //cv
+                                    Cv.find({}, (err,cv) => {
+                                        if (err) {
+                                            res.status(404,{msg: 'The services were not found'});
+                                        }else{
+                                            let data = {
+                                                skills,
+                                                projects,
+                                                profile,
+                                                cv,
+                                                services
+                                            }
+                                            var project = projects[0];
+                                            console.log(projects);
+                                            res.render('projectssingle',{data,project});
+                                                // response.json(data);        
+                                        }
+
+                                    });
+                                }
+
+                            });
+                    }
+                
+                });
+            }
+        
+        });
+    }
+
+});
+ 
+});
+
+
+router.get('/skillz', function(req,res){
+
+    //GENERATING DATA FROM THE MODELS
+    //projects
+Project.find({}, (err,projects) => {
+    if (err) {
+        res.status(404,{msg: 'The services were not found'});
+    }else{
+        //services
+        Service.find({}, (err,services) => {
+            if (err) {
+                res.status(404,{msg: 'The services were not found'});
+            }else{
+                //skills
+                Skill.find({}, (err,skills) => {
+                    if (err) {
+                        res.status(404,{msg: 'The services were not found'});
+                    }else{
+                            //profile
+                            Profile.find({}, (err,profile) => {
+                                if (err) {
+                                    res.status(404,{msg: 'The services were not found'});
+                                }else{
+                                    //cv
+                                    Cv.find({}, (err,cv) => {
+                                        if (err) {
+                                            res.status(404,{msg: 'The services were not found'});
+                                        }else{
+                                            let data = {
+                                                skills,
+                                                projects,
+                                                profile,
+                                                cv,
+                                                services
+                                            }
+                                            console.log(data);
+                                            res.render('skills',{data});
+                                                // response.json(data);        
+                                        }
+
+                                    });
+                                }
+
+                            });
+                    }
+                
+                });
+            }
+        
+        });
+    }
+
+});
+ 
+});
+
 router.get('/services', function(req,res){
     //generating services information from database through the model
     Service.find({},(err,services) => {
@@ -139,6 +315,15 @@ router.get('/services', function(req,res){
 });
 
 
+
+router.get('/services/:id', function(req,res){
+    //generating services information from database through the model
+    Service.find({id : req.params.id},(err,services) => {
+        var service = services[0];
+        res.render('servicesingle',{service});
+
+    });
+});
 
 router.get('/contacts', function(req,res){
     Profile.find({}, function(err,profile){

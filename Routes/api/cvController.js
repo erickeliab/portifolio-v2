@@ -1,10 +1,26 @@
 const express = require('express');
 const router = express.Router();
 let mongoose = require('mongoose');
+const methodOverride = require('method-override');
+const multer = require('multer');
+
+const { ensureAuthenticated } = require('../../config/auth');
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/cv/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + '.pdf') //Appending .jpg
+    }
+  })
+  
+  var upload = multer({ storage: storage });
 
 //importing the model
 let Cv = require('../../Models/Cv');
 mongoose.set('useFindAndModify', false);
+router.use(methodOverride('_method'));
 // mongoose.set( 'useUnifiedTopology', true );
 
 
@@ -15,17 +31,17 @@ router.get('/', (req,res) => {
     if (err) {
         res.status(404,{msg: 'The services were not found'});
     }else {
-       
-        res.json(all);
+       pdf = all[0];
+        res.render('auth/CV/viewCV',{pdf});
     }
 });
     
   
 });
 
-router.get('/:id', (req,res) => {
+router.get('/:id',  (req,res) => {
 
-    Cv.findOne({'_id' : req.params.id}, (err,cv) => {
+    Cv.findOne({'id' : req.params.id}, (err,cv) => {
         if (err) throw err;
 
         if (cv) {
@@ -35,33 +51,51 @@ router.get('/:id', (req,res) => {
     });
 });
 
+router.get('/edit/:id',  (req,res) => {
 
-router.post('/', (req,res) => {
-
-    var newcv = new Cv(req.body);
-
-    newcv.save( function(err,good){
-        if (err) throw err;
-
-        if(good){
-
-            res.send('the new cv was added successfull');
-        }
-    });
-});
-
-router.put('/:id', (req,res) => {
-
-    var updatedcv = req.body;
-
-    Cv.findOneAndUpdate({'_id' : req.params.id}, updatedcv, {upsert : true}, (err,cv) => {
+    Cv.findOne({'id' : req.params.id}, (err,cv) => {
         if (err) throw err;
 
         if (cv) {
-            res.send('successfully updated');
+            res.render('auth/CV/updateCV');
         }
 
     });
+});
+
+
+router.post('/', (req,res) => {
+    
+});
+
+router.put('/:id',  upload.single('imgpath'),(req,res) => {
+var errors = [];
+
+if (req.file) {
+    
+
+    var updatedcv = {} ;
+    updatedcv.path = `cv/${req.file.filename}`;
+
+    Cv.findOneAndUpdate({'id' : req.params.id}, updatedcv, {upsert : true}, (err,cv) => {
+        if (err) throw err;
+
+        if (cv) {
+             res.redirect('/cv');
+        }
+
+    });
+
+}else {
+    Cv.findOne({'id' : req.params.id}, (err,cv) => {
+        if (err) throw err;
+        errors.push({msg:'You didnt choose the pdf file'});
+        if (cv) {
+            res.render('auth/CV/updateCV',{errors});
+        }
+
+    });
+}
 });
 
 

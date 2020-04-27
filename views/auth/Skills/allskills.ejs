@@ -28,13 +28,8 @@
                 <h3 class="card-title">Skills</h3>
 
                 <div class="card-tools">
-                  <ul class="pagination pagination-sm float-right">
-                    <li class="page-item"><a class="page-link" href="#">&laquo;</a></li>
-                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">&raquo;</a></li>
-                  </ul>
+                  <a href="/skills/add" class="btn btn-success">+</a>
+                 
                 </div>
               </div>
               <!-- /.card-header -->
@@ -47,6 +42,7 @@
                       <th style="width: 40px">Experience</th>
 
                       <th>Competence</th>
+                      <th>Action</th>
                       <th>Action</th>
                      
                     </tr>
@@ -128,12 +124,24 @@
                          
                         } 
                           %>
-                      </td>
-                      <td><span class=""><%= skill.competence %></span></td>
 
-                      <td>
-                        <a href="/skills/<%= skill.id %>" class="text-danger">View</a>
-                        <a href="/skills/edit/<%= skill.id %>">Edit</a>
+                          <span class=""><%= skill.competence %></span>
+                      </td>
+                     
+
+                    
+                        <td>
+                        
+                        
+                        <a href="/skills/edit/<%= skill.id %>" class="btn btn-primary">Edit</a>
+
+
+                        <td>
+                        
+                        <form action="/skills/<%= skill.id %>?_method=delete" method="post">
+                          <input type="submit" class="btn btn-danger" value="Erase">
+                          </form>
+                        </td>
                         </td>
                     </tr>
 

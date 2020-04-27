@@ -25,7 +25,7 @@
           <div class="card-header">
             <h3 class="card-title">Add new Service</h3>
           </div>
-          <!-- /.card-header -->
+          <%- include('../../partials/messages') -%>
           <!-- form start -->
           <form role="form" action="/servicez/<%- service.id %>?_method=PUT" enctype="multipart/form-data" method='POST'>
             <div class="card-body">
@@ -39,7 +39,7 @@
               </div>
               <div class="form-group">
                 <label for="exampleInputPassword1">Description</label>
-                <textarea name="bodytext" id="" value="<%- service.bodytext %>" class="form-control"></textarea>
+                <textarea name="bodytext" id=""  class="form-control"><%- service.bodytext %></textarea>
               </div>
               <div class="form-group">
                 <img src="<%= service.imgpath %>" alt="service image" class="img thumbnail p-1" style="width: 6rem;">
@@ -48,7 +48,7 @@
                 <label for="exampleInputFile">Image File</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" name="imgpath" class="custom-file-input" id="exampleInputFile">
+                    <input type="file" name="imgpath" value="<%= service.imgpath %>" class="custom-file-input" id="exampleInputFile">
                     <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                   </div>
                   <div class="input-group-append">

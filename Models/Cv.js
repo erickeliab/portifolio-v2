@@ -32,6 +32,14 @@ let CvSchema = new Schema({
         type : String,
         required : true
     }, 
+    path :  {
+        type : String,
+        required : true
+    },
+    id :  {
+        type : String,
+        required : true
+    }, 
     Education : [{
         start :  {
             type : String,
