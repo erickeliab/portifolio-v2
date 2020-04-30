@@ -5,62 +5,48 @@
 	<!-- Header -->
 
     <%- include('partials/header') -%>
+    <div class="super_container_inner">
+      <div class="super_overlay"></div>
 
-    <div class="" style="margin-top: 10em;"></div>
-    <center><h1 class="text-dark">Services</h1></center>
-    <div class="bg-light" style="padding-top: 2em; border-top-style: groove; border-top-color: lightgreen;">
+    <div class="col-12 col-xs-12 col-sm-12 col-m-12 col-lg-12 col-xl-12"
+    style="background-image:url(images/Hacker-4.jpg) !important; background-size: cover; margin-top: 0em; padding-top: 10em;">
+          <center><h1 class="text-light">Services</h1></center>
+    </div>
+
+
+
+
+    <div class="bg-light" style="padding-top: 2em;">
             <div class="container" id="servicesCont">
                     <!-- section 1 -->
-                    <div class="container row col-md-12 col-lg-12 col-xl-12 mt-5 ">
-                     <div class="contaier col-md-6 col-12 col-lg-6">
-                                <img src="images/uiux2.jpeg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
-                        </div>
-                         <div class="contaier col-md-6 col-12 col-lg-6">
-                             <br>
-                             <h2 class="text-dark service"><%= services[0].head %></h2>
-                             <p><%= services[0].bodytext %></p>
-                                <button class="btn btn-success float-left mt-2 mb-2">Skills</button>
-<a href="/services/<%= services[0].id %>">read</a>
-                            </div>
-                    </div>
+                    <% services.forEach((service) => {
+
+                      %>
                     <!-- section 2 -->
-                    <div class="container row col-md-12 col-lg-12 col-xl-12 mt-5 bg-white">
-                           
+                    <div class="container row col-md-11 col-lg-11 col-xl-11 mt-5 bg-white">
+
                                 <div class="contaier col-md-6 col-12 col-lg-6">
                                     <br>
-                                    <h2 class="text-dark service"><%= services[1].head %></h2>
-                                    <p><%= services[1].bodytext %></p><button class="btn btn-success float-left mt-2 mb-2">Skills</button>
+                                    <h2 class="text-dark service"><%= service.head %></h2>
+                                    <p><%= service.bodytext.substring(0,85) %></p>
+                                    <a href="/services/<%= service.id %>" class="btn btn-success float-left mt-2 mb-2">View</a>
                                    </div>
                                    <div class="contaier col-md-6 col-12 col-lg-6">
                                        <br><br>
-                                        <img src="images/backend.jpeg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
-                                
+                                        <img src="<%= service.imgpath %>" class="mb-3 rounded img" style="height:200px; width:400px" alt="Responsive image">
+
                                     </div>
-                                    <a href="/services/<%= services[1].id %>">read</a>
+
                            </div>
+                           <%
+                         });
+                          %>
                            <!-- section 3 -->
-            
-                           <div class="container row col-md-12 col-lg-12 col-xl-12 mt-5 bg-white">
-                               
-                                <div class="contaier col-md-6 col-12 col-lg-6">
-                                    <br>
-                                    <h2 class="text-dark service"><%= services[2].head %></h2>
-                                        <br>
-                                           <img src="images/frontend.jpeg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
-                                   </div>
-                                    <div class="contaier col-md-6 col-12 col-lg-6">
-                                        <br>
-                                        
-                                        <p> <p><%= services[1].bodytext %></p></p>
-                                            <button class="btn btn-success float-left mt-2 mb-2">Skills</button>
-                                            <a href="/services/<%= services[2].id %>">read</a>
-                                       </div>
-                               </div>
-                </div>
-                <br>
+                           <br><br>
+                         </div>
+
                 <%- include('partials/footer') -%>
             </div>
-   
 
 </div>
-
+</div>

@@ -24,12 +24,12 @@ router.get('/', (req,res) => {
         res.status(404,{msg: 'The services were not found'});
     }else {
         let profile = profileA[0];
-        
+
         res.render('auth/Profile/viewprofile',{profile});
     }
 });
-    
-  
+
+
 });
 
 //SINGLE DOC
@@ -45,24 +45,25 @@ router.get('/edit', (req,res) => {
             res.render('auth/Profile/updateprofile',{profile});
         }
     });
-    
-  
+
+
 });
 
 router.put('/:s',  upload.single('profileimg'), (req,res) => {
     //Querying through model
     var errors = [];
     var newprof = req.body;
-    const { firstname, middlename,lastname,Birthday,Job,Nationality,MaritalStatus,Location,Note,JobTitle, Education, profileimg } = req.body;
-    if (firstname && middlename && lastname && Birthday && Job && Nationality && MaritalStatus && Location && Note && JobTitle && Education && profileimg ) {
-        
+
+    const { firstname, middlename, lastname, Birthday, Job, Nationality, MaritalStatus, Location, Note, JobTitle, Education, profileimg } = req.body;
+    if (firstname && middlename && lastname && Birthday && Job && Nationality && MaritalStatus && Location && Note && JobTitle && Education  ) {
+
 
     if (req.file){
-        
+
         newprof.profileimg =  "images/" + req.file.filename;
     }
-   
-    
+
+
     Profile.findOneAndUpdate({}, newprof, {upsert: true},(err,prof) => {
         if (err) {
             throw err;
@@ -70,7 +71,7 @@ router.put('/:s',  upload.single('profileimg'), (req,res) => {
               res.redirect('/profile');
         }
     });
-    
+
 }else{
     errors.push({msg: 'Please fill all the required fields'});
     Profile.find({}, (err,profileA) => {
@@ -81,7 +82,7 @@ router.put('/:s',  upload.single('profileimg'), (req,res) => {
             console.log(profile);
             res.render('auth/Profile/updateprofile',{profile,errors});
         }
-    });   
+    });
 }
 });
 module.exports = router;

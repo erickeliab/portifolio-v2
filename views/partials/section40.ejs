@@ -3,14 +3,14 @@
     <div class="container bg-white" >
         <div class="row">
 
-          <center><h1 class="text-light"></h1></center>
+
             <div class="col-lg-4 footer_col bg-white ">
                 <div class="footer_about bg-white">
                     <div class="footer_logo bg-white">
                         <a href="#">
                             <div class="d-flex flex-row align-items-center justify-content-start">
                                 <div class="footer_logo_icon"><img src="" alt=""></div>
-                                <div>Education</div>
+                                <div>About the projects</div>
                             </div>
                         </a>
                     </div>
@@ -21,16 +21,14 @@
                         <p class="text-dark">Certifiied with Certificate of Advanced Secondary Education in 2017, Awarded Certificate of Ordinary Secondary Education in 2014, Certificate of Primary Education in 2010</p>
 
                       </div>
-<br>
-                </div>
-                <p>                        <a href="/projectz" class="btn btn-lg ml-2 mt-20 bg-white text-success rounded-6" style="border-color: green; border: strong;"> Carriculum Vitae</a><small>pdf</small></p>
 
+                </div>
             </div>
               <!-- Projects -->
               <div class="col-lg-8 card bg-white mt-4 mb-4" style="border:none !important;">
                   <br><br>
 
-                    <center><span style="font-size: 3em;" class="text-dark"><b> Projects</b></span></center>
+                    <center><span style="font-size: 3em;" class="text-dark"><b><%=data.projects.length %> Projects</b></span></center>
                                 <div class="container">
 
                                         <table class="table table-hover">
@@ -43,12 +41,7 @@
                                                   </tr>
                                                 </thead>
                                                 <tbody>
-                                                  <% var i = 0;
-                                                  data.projects.forEach(project => {
-                                                    i += 1;
-                                                    if (i <= 3) {
-
-
+                                                  <% data.projects.forEach(project => {
                                                     %>
                                                     <tr>
                                                     <td ><a href="/projectz/<%= project.id %>" style="display:block" class="text-dark"><%= project.projectname%></a> </td>
@@ -57,14 +50,12 @@
 
                                                   </tr>
                                                   <%
-                                                  }
                                                   });
 
                                                   %>
 
                                                 </tbody>
                                               </table>
-                                              <p> <a href="/projectz" class="btn btn-lg mb-3 ml-2 bg-white text-success rounded-6" style="border-color: green; border: strong;"> All</a></p>
 
                                 </div>
 
@@ -73,7 +64,8 @@
             <!-- Projects -->
 
 
-            <br><br><br>
+                        <a href="/projectz" class="btn btn-lg ml-2 bg-dark text-white mt-20 rounded-6" style="border-color: green; border: strong;"><i class="fab fa-github "></i></a></p>
+            <br>
         </div>
     </div>
 </div>

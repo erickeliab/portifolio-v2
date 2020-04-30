@@ -1,15 +1,22 @@
-<%- include('partials/menu') -%>
 
+
+<%- include('partials/menu') -%>
 <div class="super_container">
+
+
 
 	<!-- Header -->
 
     <%- include('partials/header') -%>
+    <div class="super_container_inner">
+  		<div class="super_overlay"></div>
+    <div class="col-12 col-xs-12 col-sm-12 col-m-12 col-lg-12 col-xl-12"
+    style="background-image:url(images/Hacker-4.jpg) !important; background-size: cover; margin-top: 0em; padding-top: 10em;">
+          <center><h1 class="text-light">About Me</h1></center>
+    </div>
 
-    <div class="" style="margin-top: 10em;"></div>
-    <center><h1 class="text-dark">About Me</h1></center>
-    <div class="bg-light" style="padding-top: 2em; border-top-style: groove; border-top-color: lightgreen;">
-         
+    <div class="bg-light" style="padding-top: 2em;">
+
         		<!-- Personal profile 3 -->
 <%- include('partials/personalProfile') -%>
 
@@ -18,12 +25,21 @@
 
 <!-- SECTION 4 -->
 <%- include('partials/section4') -%>
-			<!-- example-->
-			
-                <br>
+
+        <nav class="navbar navbar-white navbar-fixed-top container" style="border-color: green; align-content: center;">
+
+
+      	<div class="navbar-left">
+      		<a href="#tap" class="btn  text-dark" style="position: relative; border-color: green;"><h5>Top</h5></a>
+      	</div>
+
+
+      <div class="navbar-left">
+      	<a href="#futer" class="btn  text-dark" style="position: relative; border-color: green;"><h5>Down</h5></a>
+      </div>
+      <hr>
+      </nav>
                 <%- include('partials/footer') -%>
             </div>
-   
-
 </div>
-
+</div>

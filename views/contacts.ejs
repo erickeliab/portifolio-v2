@@ -5,10 +5,15 @@
 	<!-- Header -->
 
     <%- include('partials/header') -%>
+    <div class="super_container_inner">
+      <div class="super_overlay"></div>
 
-    <div class="" style="margin-top: 10em;"></div>
-    <center><h1 class="text-dark">Contact Me</h1></center>
-    <div class="bg-light" style="padding-top: 2em; border-top-style: groove; border-top-color: lightgreen;">
+    <div class="col-12 col-xs-12 col-sm-12 col-m-12 col-lg-12 col-xl-12"
+    style="background-image:url(images/Hacker-4.jpg) !important; background-size: cover; margin-top: 0em; padding-top: 10em;">
+          <center><h1 class="text-light">Contacts</h1></center>
+    </div>
+
+    <div class="bg-light" style="padding-top: 2em; ">
 		  <div class="container col-lg- 12  col-md-12" style="padding-bottom: 3em;">
 				<h2 class="text-dark">Contact Details</h2>
 		 </div>
@@ -16,37 +21,45 @@
 				<div class="col-md-4 col-lg-4 col-xl-4 mt-3">
 						<span><h4>Email Address</h4></span>
 						<ul class="list-group">
+              <% if(typeof cv != 'undefined') { %>
 							<li class="list-group-item"><%= cv[0].Email %> </li>
 							<li class="list-group-item"><%= cv[0].Email %> </li>
+              <% } %>
 						</ul>
-		 
+
 					</div>
-		 
+
 					<div class="col-md-4 col-lg-4 col-xl-4 mt-3">
 						 <span><h4>Post Address</h4></span>
 						 <ul class="list-group">
+                 <% if(typeof cv != 'undefined') { %>
 							 <li class="list-group-item"><%= cv[0].Address %></li>
+               <% } %>
 							 <li class="list-group-item"> Mzumbe</li>
+
 						 </ul>
-		  
+
 					 </div>
 
 					 <div class="col-md-4 col-lg-4 col-xl-4 mt-3">
 							<span><h4>Mobile Phone</h4></span>
 							<ul class="list-group">
+                 <% if(typeof cv != 'undefined') { %>
 								<li class="list-group-item"> <%= cv[0].Telephone %></li>
 								<li class="list-group-item"><%= cv[0].Telephone %></li>
+                <% } %>
 							</ul>
-			 
+
 						</div>
 		  </div>
-		
+
 			<!-- example-->
-			
+
                 <br>
                 <%- include('partials/footer') -%>
             </div>
-   
+
+            </div>
+            </div>
 
 </div>
-

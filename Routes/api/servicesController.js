@@ -37,12 +37,12 @@ router.get('/add', (req,res) => {
     Skill.find( (err,skills) => {
         if (err) {
             console.log('some error occured during querrying the skills');
-        } 
+        }
         else {
             res.render('auth/Services/addservice', {skills});
         }
     });
-  
+
 });
 
 
@@ -51,20 +51,20 @@ router.get('/:s', (req,res) =>{
 
 //finding thhe service according to the passed parameter
 
-   
+
 Service.findOne({'id' : req.params.s}, (err,service) => {
     if (err) {
         res.status(404,{msg: 'The services were not found'});
     }else {
-       
+
        //res.send(req.params.s);
        console.log(service);
        res.render('auth/Services/singleservice',{service});
-        
+
     }
 });
 
-   
+
 });
 
 
@@ -73,30 +73,30 @@ Service.findOne({'id' : req.params.s}, (err,service) => {
 router.get('/delete/:s', (req,res) =>{
 
     //finding the service according to the passed parameter
-    
-       
+
+
     Service.findOne({'id' : req.params.s}, (err,service) => {
         if (err) {
             res.status(404,{msg: 'The services were not found'});
         }else {
-           
+
            //res.send(req.params.s);
            console.log(service);
            res.render('auth/Services/deleteserv',{service});
-            
+
         }
     });
-    
-       
+
+
     });
 
-    
+
     // getting an update form
 
     router.get('/edit/:s', (req,res) =>{
 
         //finding thhe service according to the passed parameter
-        
+
            Skill.find({}, (err,skills) => {
 
             if (err) throw err;
@@ -107,18 +107,18 @@ router.get('/delete/:s', (req,res) =>{
                     if (err) {
                         res.status(404,{msg: 'The services were not found'});
                     }else {
-                       
+
                        //res.send(req.params.s);
                        console.log(service);
                        res.render('auth/Services/updateservice',{service,skills});
-                        
+
                     }
                 });
-                
+
             }
            })
-        
-           
+
+
         });
 
 //creating the new service
@@ -129,9 +129,9 @@ router.post('/', upload.single('imgpath'), (req,res) => {
     var errors = [];
     const { s_name , head ,bodytext ,imgpath } = req.body;
 
-    if (s_name  && head && bodytext && imgpath) {
-        
-   
+    if (s_name  && head && bodytext && req.file.filename) {
+
+
 
     var keys = Object.keys(req.body);
     var tools = [];
@@ -143,8 +143,8 @@ router.post('/', upload.single('imgpath'), (req,res) => {
         var temp = '';
         if (projes){
             projes.forEach((pro) => {
-               
-               
+
+
                 if ( pro.id > temp || temp == ''){
 
                     temp = pro.id;
@@ -152,23 +152,23 @@ router.post('/', upload.single('imgpath'), (req,res) => {
                     temp = temp;
                 }
 
-                
+
             })
             // temp = temp.toInt();
             req.body.id = Number(temp) + 1;
-            
+
         }
     });
-   
-    
+
+
     Skill.find({}, function(err,datas) {
         if (err) throw err;
 
         if (datas) {
-            
-            //will need to loop through the data 
 
-            
+            //will need to loop through the data
+
+
             datas.forEach((data) => {
 
                 keys.forEach((key) => {
@@ -178,7 +178,7 @@ router.post('/', upload.single('imgpath'), (req,res) => {
                 });
              });
         }
-        
+
 
 
     var savedata = new Service(req.body);
@@ -202,13 +202,13 @@ router.post('/', upload.single('imgpath'), (req,res) => {
     Skill.find( (err,skills) => {
         if (err) {
             console.log('some error occured during querrying the skills');
-        } 
+        }
         else {
             res.render('auth/Services/addservice', {skills,errors});
         }
     });
-    
-           
+
+
 }
 
  } );
@@ -222,17 +222,17 @@ router.put('/:s', upload.single('imgpath'), (req,res) =>{
     var errors = [];
     const { s_name , head ,bodytext ,imgpath } = req.body;
 
-    if (s_name  && head && bodytext && imgpath) {
+    if (s_name  && head && bodytext ) {
     const tools = [];
     const keys = Object.keys(req.body);
-    
-       
+
+
     Service.findOne({'id': req.params.s}, (err,newService) => {
         if (err) {
             res.status(404,{msg: 'The services were not found'});
         }else if (newService){
             //extracting the tools array
-            Skill.find({}, (err, skillls ) => 
+            Skill.find({}, (err, skillls ) =>
         {
             if (err) throw err;
 
@@ -244,9 +244,9 @@ router.put('/:s', upload.single('imgpath'), (req,res) =>{
                         //check if they match
 
                         if (skill.skillname === key){
-                            
+
                             tools.push(key);
-                            
+
                         }
                     });
 
@@ -256,15 +256,15 @@ router.put('/:s', upload.single('imgpath'), (req,res) =>{
 
             if (req.file){
                 let path = `images/${req.file.filename}`;
-                newService.imgpath = path; 
+                newService.imgpath = path;
                 newService.tools = tools;
                 newService.s_name = s_name;
                 newService.head = head;
                 newService.bodytext = bodytext;
                 newService.save();
-                
+
             } else {
-                
+
                 newService.imgpath =  newService.imgpath;
                 newService.tools = tools;
                 newService.s_name = s_name;
@@ -272,10 +272,10 @@ router.put('/:s', upload.single('imgpath'), (req,res) =>{
                 newService.bodytext = bodytext;
 
                 newService.save();
-                
+
             }
-          
-            
+
+
             // return res.send(newService);
 
              res.redirect('/servicez');
@@ -285,42 +285,42 @@ router.put('/:s', upload.single('imgpath'), (req,res) =>{
 }else{
         errors.push({msg : 'Fill in the form correcting, there are missing fields'});
         Skill.find({}, (err,skills) => {
-    
+
             if (err) throw err;
-    
+
             if (skills) {
-    
+
                 Service.findOne({'id' : req.params.s}, (err,service) => {
                     if (err) {
                         res.status(404,{msg: 'The services were not found'});
                     }else {
-                       
+
                        //res.send(req.params.s);
                        console.log(service);
                        res.render('auth/Services/updateservice',{service,skills,errors});
-                        
+
                     }
                 });
-                
+
             }
            })
-        
-               
+
+
     }
 });
-  
+
 router.delete('/:s', (req,res) =>{
 
     //finding thhe service according to the passed parameter
-   
+
     Service.deleteOne({id : req.params.s}, (err,doc) => {
         if(err) throw err;
         else {
              res.redirect('/servicez');
         }
     });
-    
-       
+
+
     });
 
 

@@ -21,8 +21,8 @@ router.get('/',ensureAuthenticated, (req,res) => {
         res.render('auth/Messages/allmessages',{messages,route});
     }
 })
-    
-  
+
+
 });
 
 
@@ -44,8 +44,8 @@ router.get('/inbox/',ensureAuthenticated, (req,res) => {
         res.render('auth/Messages/inbox',{messages,route});
     }
 })
-    
-  
+
+
 });
 
 
@@ -67,8 +67,8 @@ router.get('/trash/',ensureAuthenticated, (req,res) => {
         res.render('auth/Messages/trash',{messages,route});
     }
 })
-    
-  
+
+
 });
 
 
@@ -78,16 +78,16 @@ router.get('/add',ensureAuthenticated, (req,res) => {
 
     Message.find({}, (err,skills) => {
     if (err) {
-       
+
         res.status(404,{msg: 'The message were not found'});
     }else {
-       
+
         res.render('auth/Message/addskill');
     }
-   
+
 })
-    
-  
+
+
 });
 
 // GETTING A SPECIFIC MESSAGE
@@ -105,7 +105,7 @@ router.get('/:id',ensureAuthenticated, (req,res) => {
         }
     });
 
-   
+
 });
 
 // MARK UNREAD MESSAGE
@@ -123,20 +123,55 @@ router.get('/unread/:id',ensureAuthenticated, (req,res) => {
         }
     });
 
-   
+
 });
 
 // CREATING NEW MESSAGE
 router.post('/', function(req,res){
-    let msgbody = new Message(req.body);
+  var errors = [];
 
-    msgbody.save( function(err,rei){
+  const {sendersname,email,phone,message} = req.body;
+
+  if (sendersname && email && phone && message) {
+
+
+    Message.find({}, (err, projes) => {
         if (err) throw err;
-        if (rei) {
-            res.send('the message was successfull created');
-        } 
-    });
 
+        var temp = '';
+        if (projes){
+            projes.forEach((pro) => {
+
+
+                if ( pro.id > temp || temp == ''){
+
+                    temp = pro.id;
+                }else {
+                    temp = temp;
+                }
+
+
+            })
+            // temp = temp.toInt();
+            req.body.id = Number(temp) + 1;
+            var msgbody = new Message(req.body);
+                msgbody.id = req.body.id;
+                msgbody.save( function(err,rei){
+            if (err) throw err;
+            if (rei) {
+                req.flash('success_msg', 'Sent');
+                  res.redirect('/#alpha');
+            }
+        });
+          }
+        });
+
+
+  }else {
+    req.flash('error_msg', 'Please fill all the fields');
+
+    res.redirect('/#alpha');
+  }
 });
 
 //UPDATING MESSAGE
@@ -187,7 +222,7 @@ router.get('/recover/:id',ensureAuthenticated, (req,res) => {
 //DELETING MESSAGE
 router.delete('/:id',ensureAuthenticated, (req,res) => {
 
-    
+
 
     Message.findOneAndDelete({'id' : req.params.id}, (err,message) => {
         if (err) {

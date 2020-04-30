@@ -1,0 +1,60 @@
+<div class="site-blocks-cover inner-page py-5 bg-dark" data-aos="fade" style="margin-top:-20px;">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6 ml-auto order-md-2 align-self-start">
+              <div class="site-block-cover-content">
+
+                <br>
+                        <p><a href="/" class="btn btn-success mt-20 rounded-6"><i class="fa fa-home" aria-hidden="true"></i></a></p>
+
+<br><br>
+
+        <img src="images/competence.jpeg" class="mb-10 img rounded" alt="">
+
+
+              </div>
+            </div>
+            <div class="col-md-6 order-1 align-self-end">
+
+                    <br>
+                    <table class="table table-hover table-dark">
+                          <thead>
+
+                            <tr class="rounded">
+
+                              <th></th>
+                              <th></th>
+                              <th class="text-white">from</th>
+
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <%
+
+                            data.skills.forEach(skill => {
+
+
+
+                              %>
+                              <tr>
+                              <td><%= skill.skillname %></td>
+                              <td><%= skill.competence %></td>
+                              <td><%= skill.experience %></td>
+                            </tr>
+                            <%
+
+
+                            });
+
+                            %>
+
+
+
+
+
+                          </tbody>
+                      </table>
+            </div>
+          </div>
+        </div>
+      </div>

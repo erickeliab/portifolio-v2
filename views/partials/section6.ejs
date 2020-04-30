@@ -1,48 +1,48 @@
 <div class="footer_content bg-white" style="margin-bottom: -80px;">
     <div class="container">
         <div class="row">
-            
+
             <!-- About -->
-          
+
               <!-- Projects -->
               <div class="col-lg-8 mt-4">
                   <br><br>
-                
-                    <center><span style="font-size: 3em;" class="text-dark"><b> <%= service.head %> 
+
+                    <center><span style="font-size: 3em;" class="text-dark"><b> <%= service.head %>
                     </b></span></center>
                                 <div class="container">
-                    
+
                                   <img src="<%= service.imgpath %> " class="img-fluid rounded mx-auto d-block" alt="Responsive image">
 
-                                              <br> 
-                                </div>                    
+                                              <br>
+                                </div>
                 </div>
 
             <!-- Projects -->
-           
-            <div class="col-lg-4 footer_col ">
+
+            <div class="col-lg-4 footer_col" style="margin-top:-20px;">
                 <div class="footer_about">
-                  
+
                     <div class="footer_about_text" >
                       <h3>Description</h3>
                        <p class="text-dark">
 
-                        <%= service.bodytext %> 
+                        <%= service.bodytext %>
                        </p>
                        <h4>Tools</h4>
                        <ul class="list-group">
                         <% service.tools.forEach( function(tool) {
-                          %> 
+                          %>
                           <li class="list-group-item text-dark"><%- tool %></li>
                           <%
-                        }) %> 
+                        }) %>
                        </ul>
                       </div>
                     <br>              <p><a href="/services" class="btn btn-success mt-20 rounded-0">Back to list</a></p>
 
                 </div>
             </div>
-           
+
         </div>
     </div>
 </div>

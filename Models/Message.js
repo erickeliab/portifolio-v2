@@ -2,10 +2,10 @@ var mongoose = require('mongoose');
 
 var MessageSchema = mongoose.Schema({
 
-    
+
     id :{
         type : String,
-        required : true,
+
     },
         sendersname :{
             type : String,
@@ -13,7 +13,7 @@ var MessageSchema = mongoose.Schema({
         },
         lastname : {
             type : String,
-            required : true,
+
         },
         email : {
             type : String,
@@ -29,13 +29,13 @@ var MessageSchema = mongoose.Schema({
         },
         read : {
             type : Boolean,
-            
+
         },
         deleted : {
             type : Boolean
         }
-    
-      
+
+
 });
 
 let Message = module.exports = mongoose.model('Message', MessageSchema , 'messages');

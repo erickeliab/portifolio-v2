@@ -1,70 +1,62 @@
-<footer class="" style="background-image:url(images/gradient2.jpeg) !important; background-size: cover;" >
+
+<footer class="card" style="background-image:url(images/gradient2.jpeg) !important; background-size: cover; border:none !important; margin-bottom: 0px;" >
     <div class="footer_content">
         <div class="container" >
             <div class="row">
-                
+
                 <div class="container col-lg-7" >
-                   
+
                     <center><br>
-                            <h2 class="text-dark m-30" style="border-color: green;">Get In Touch</h2>
-                            <form action="#" class="col-lg-10" method="post">
-              
-                                    <div class="p-3 p-lg-5 border">
-                                      <div class="form-group row">
-                                        <div class="col-md-6">
-                                          <label for="c_fname" class="text-black">First Name <span class="text-danger">*</span></label>
-                                          <input type="text" class="form-control" id="c_fname" name="c_fname">
-                                        </div>
-                                        <div class="col-md-6">
-                                          <label for="c_lname" class="text-black">Last Name <span class="text-danger">*</span></label>
-                                          <input type="text" class="form-control" id="c_lname" name="c_lname">
-                                        </div>
-                                      </div>
-                                      <div class="form-group row">
-                                        <div class="col-md-12">
-                                          <label for="c_email" class="text-black">Email <span class="text-danger">*</span></label>
-                                          <input type="email" class="form-control" id="c_email" name="c_email" placeholder="">
-                                        </div>
-                                      </div>
-                                      <div class="form-group row">
-                                        <div class="col-md-12">
-                                          <label for="c_message" class="text-black">Message </label>
-                                          <textarea class="form-control" placeholder="Place some text here"
-                                          style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" name="c_message"></textarea>
-                                                                                             </div>
-                                      </div>
-                      
-                                      
-                                      <div class="form-group row">
-                                        <div class="col-lg-12">
-                                          <input type="submit" class="btn btn-success btn-lg btn-block" value="Send Message">
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </form>
+                            <h2 class="footer_title text-dark m-30" style="border-color: green;">Get In Touch</h2>
+                            <form role="form" id="quickForm" action="/messages" method="POST" >
+                            <%- include('./messages') -%>
+                  <div class="card-body">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1"></label>
+                      <input type="email" name="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1"></label>
+                      <input type="text" name="sendersname" class="form-control" id="exampleInputEmail1" placeholder="Enter name">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputEmail1"></label>
+                      <input type="text" name="phone" class="form-control" id="exampleInputEmail1" placeholder="Enter phone">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputPassword1" class="text-dark">Your Message</label>
+                      <textarea name="message" rows="4" cols="30" class="text-dark form-control"> </textarea>
+                    </div>
+
+                  </div>
+                  <!-- /.card-body -->
+                  <div class="">
+                    <button type="submit" class="btn btn-dark">Send</button>
+                  </div>
+                </form>
                     </center>
-                    
+
                 </div>
                 <!-- Footer Contact -->
-               
+
                 <div class="col-lg-4 footer_col">
                     <div class="footer_contact">
                         <div class="newsletter">
-                                <div class="footer_title">Quick Links</div><br>
+                                <div class="footer_title text-light">Quick Links</div><br>
 
                                 <ul class="">
-                            
+
                                 <li><a class="text-success" href="/">Home</a></li>
                                 <li><a class="text-success" href="/about">About</a></li>
                                 <li><a class="text-success" href="/services">Services</a></li>
-                                <li><a class="text-success" href="/contacts">Contact</a></li> 
+                                <li><a class="text-success" href="/contacts">Contact</a></li>
                                 <li><a class="text-success" href="/projectz">Projects</a></li>
                                 <li><a class="text-success" href="/skillz">Skills</a></li>
                                 </ul>
 
                         </div>
                         <div class="footer_social">
-                            <div class="footer_title">Social</div>
+                            <div class="footer_title text-light">Social</div>
                             <ul class="footer_social_list d-flex flex-row align-items-start justify-content-start text-success">
                                 <li><a href="https://web.facebook.com/erick.eliab"><i class="fa fa-facebook text-success" aria-hidden="true"></i></a></li>
                                 <li><a href="#"><i class="fa fa-google-plus text-success" aria-hidden="true"></i></a></li>
@@ -79,28 +71,28 @@
             </div>
         </div>
     </div>
-    
+
 <nav class="navbar navbar-default  container" style="border-color: green; align-content: center;">
 	<!-- Phone -->
 	<div class="navbar-left">
 		<a href="#tap" class="btn text-success" style="position: relative; border-color: green;"><h5>Top</h5></a>
 	</div>
-   
-	
+
+
 
 <hr>
 </nav>
     <div class="footer_bar bg-white" id="futer">
-            
+
         <div class="container">
-               
+
             <div class="row " style="padding-bottom: 2em;">
                 <div class="col text-success">
                     <br>
-                        <center>Copyright &copy;<script>document.write(new Date().getFullYear());</script> 
+                        <center>Copyright &copy;<script>document.write(new Date().getFullYear());</script>
                         </center>
                 </div>
-                
+
             </div>
         </div>
     </div>

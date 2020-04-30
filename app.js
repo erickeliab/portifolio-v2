@@ -13,23 +13,23 @@ const app = express();
 require('./config/passport')(passport);
 
 // // DB Config
-// const db = require('./config/keys').mongoURI;
+const db = require('./config/keys').mongoURI;
 
-// // Connect to MongoDB
-// mongoose
-//   .connect(
-//     db,
-//     { useNewUrlParser: true }
-//   )
-//   .then(() => console.log('MongoDB Connected'))
-//   .catch(err => console.log(err));
+// Connect to MongoDB
+mongoose
+  .connect(
+    db,
+    { useNewUrlParser: true,dbName: "MyFullstack" }
+  )
+  .then(() => console.log('MongoDB Connected'))
+  .catch(err => console.log(err));
 
 //Set up default mongoose connection
-var mongoDB = 'mongodb://127.0.0.1/MyFullstack';
-mongoose.connect(mongoDB, { useNewUrlParser: true });
-
-//Get the default connection
-var db = mongoose.connection;
+// var mongoDB = 'mongodb://127.0.0.1/MyFullstack';
+// mongoose.connect(mongoDB, { useNewUrlParser: true });
+//
+// //Get the default connection
+// var db = mongoose.connection;
 
 // EJS
 app.use(expressLayouts);
@@ -90,15 +90,15 @@ app.use('/users', require('./Routes/users.js'));
 //ROUTING
 //index routing
 
-app.use('/', require('./Routes/indexroutes')); 
-// app.use('/dashboard', require('./Routes/api/dashboardController')); 
-app.use('/skills', require('./Routes/api/skillsController')); 
+app.use('/', require('./Routes/indexroutes'));
+// app.use('/dashboard', require('./Routes/api/dashboardController'));
+app.use('/skills', require('./Routes/api/skillsController'));
 //API ROUTES
-app.use('/servicez', require('./Routes/api/servicesController')); 
-app.use('/cv', require('./Routes/api/cvController')); 
-app.use('/projects', require('./Routes/api/projectsController')); 
-app.use('/messages', require('./Routes/api/messagesController')); 
-app.use('/profile', require('./Routes/api/profileController')); 
+app.use('/servicez', require('./Routes/api/servicesController'));
+app.use('/cv', require('./Routes/api/cvController'));
+app.use('/projects', require('./Routes/api/projectsController'));
+app.use('/messages', require('./Routes/api/messagesController'));
+app.use('/profile', require('./Routes/api/profileController'));
 
 const PORT = process.env.PORT || 5000;
 

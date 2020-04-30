@@ -3,46 +3,52 @@
           <div class="row">
             <div class="col-md-6 ml-auto order-md-2 align-self-start">
               <div class="site-block-cover-content">
-              <h2 class="sub-title text-success">Skills</h2>
-              <h1 class="text-success">Technologies and Tools</h1>
-              <br>
-              <img src="images/competence.jpeg" class="mb-10 img img-rounde" alt="">
-            
+              <h2 class="sub-title text-success">Skills Tech Tools</h2>
+              <table class="table  table-dark">
+                    <thead>
+
+                      <tr class="rounded">
+
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% var a = 0;
+
+                      data.skills.forEach(skill => {
+                        a += 1;
+                        if (a <= 5) {
+
+
+                        %>
+                        <tr>
+                        <td><%= skill.skillname %></td>
+                        <td><%= skill.competence %></td>
+
+                      </tr>
+                      <%
+                      }
+
+                      });
+
+                      %>
+
+
+
+
+
+                    </tbody>
+                  </table>
+
+
               </div>
             </div>
             <div class="col-md-6 order-1 align-self-end">
-             
+
                     <br>
-                          <table class="table table-hover table-dark">
-                                <thead>
-                                  
-                                  <tr>
-                                    
-                                    <th scope="col"></th>
-                                    <th scope="col">Level Of Competence</th>
-                                    <th scope="col">Experience(years)</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                  <% data.skills.forEach(skill => {
-                                    %>
-                                    <tr>
-                                    <td><%= skill.skillname %></td>
-                                    <td><%= skill.competence %></td>
-                                    <td><%= skill.experience %></td>
-                                  </tr>
-                                  <%
-                                  });
+                    <img src="images/competence.jpeg" class="mb-10 img rounded" alt="">
 
-                                  %>
-                                  
-
-                                 
-                               
-                                  
-                                </tbody>
-                              </table>
-                              <br>              <p><a href="#" class="btn btn-success mt-20 rounded-0">More</a></p>
+                              <br>     <br>
+                                         <p><a href="/skillz" class="btn btn-success mt-20 rounded-6">More Skills</a></p>
 
             </div>
           </div>

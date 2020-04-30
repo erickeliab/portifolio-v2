@@ -50,9 +50,9 @@ Project.find({}, (err,projects) => {
                                                 cv,
                                                 services
                                             }
-                                            console.log(data.services[0]);
+                                          
                                             response.render('index',{data});
-                                                // response.json(data);        
+                                                // response.json(data);
                                         }
 
                                     });
@@ -60,18 +60,18 @@ Project.find({}, (err,projects) => {
 
                             });
                     }
-                
+
                 });
             }
-        
+
         });
     }
 
 });
 
-  
 
-    }); 
+
+    });
 
 router.get('/about', function(req,res){
 
@@ -110,7 +110,7 @@ Project.find({}, (err,projects) => {
                                             }
                                             console.log(data);
                                             res.render('about',{data});
-                                                // response.json(data);        
+                                                // response.json(data);
                                         }
 
                                     });
@@ -118,15 +118,15 @@ Project.find({}, (err,projects) => {
 
                             });
                     }
-                
+
                 });
             }
-        
+
         });
     }
 
 });
- 
+
 });
 
 
@@ -168,7 +168,7 @@ Project.find({}, (err,projects) => {
                                             }
                                             console.log(data);
                                             res.render('projects',{data});
-                                                // response.json(data);        
+                                                // response.json(data);
                                         }
 
                                     });
@@ -176,15 +176,15 @@ Project.find({}, (err,projects) => {
 
                             });
                     }
-                
+
                 });
             }
-        
+
         });
     }
 
 });
- 
+
 });
 
 
@@ -229,7 +229,7 @@ Project.find({id : req.params.id}, (err,projects) => {
                                             var project = projects[0];
                                             console.log(projects);
                                             res.render('projectssingle',{data,project});
-                                                // response.json(data);        
+                                                // response.json(data);
                                         }
 
                                     });
@@ -237,15 +237,15 @@ Project.find({id : req.params.id}, (err,projects) => {
 
                             });
                     }
-                
+
                 });
             }
-        
+
         });
     }
 
 });
- 
+
 });
 
 
@@ -286,7 +286,7 @@ Project.find({}, (err,projects) => {
                                             }
                                             console.log(data);
                                             res.render('skills',{data});
-                                                // response.json(data);        
+                                                // response.json(data);
                                         }
 
                                     });
@@ -294,15 +294,15 @@ Project.find({}, (err,projects) => {
 
                             });
                     }
-                
+
                 });
             }
-        
+
         });
     }
 
 });
- 
+
 });
 
 router.get('/services', function(req,res){
@@ -329,19 +329,19 @@ router.get('/contacts', function(req,res){
     Profile.find({}, function(err,profile){
         if (err) {
             res.status(404);
-        } else 
+        } else
         {
             Cv.find({}, function(err,cv){
                 if (err) {
                     res.status(404);
-                } else 
+                } else
                 {
-                   
+
                     res.render('contacts',{profile , cv});
-        
+
                 }
             })
-           
+
 
         }
     })
@@ -373,7 +373,7 @@ router.get('/dash', ensureAuthenticated , (req,res) => {
                                         if (err) {
                                             res.status(404,{msg: 'The services were not found'});
                                         }else{
- 
+
                                          //getting number of all projects
                                          Project.count({},function(err,no_project){
                                                //getting number of all services
@@ -382,7 +382,7 @@ router.get('/dash', ensureAuthenticated , (req,res) => {
                                                        Message.count({},function(err,no_messages){
                                                            //getting number of all skills
                                                            Skill.count({},function(err,no_skills){
-                                               
+
                                                              let data = {
                                                                  skills,
                                                                  projects,
@@ -393,38 +393,38 @@ router.get('/dash', ensureAuthenticated , (req,res) => {
                                                                  no_services,
                                                                  no_messages,
                                                                  no_skills
- 
+
                                                              }
-                                                              
+
                                                             console.log(data);
                                                             res.render('auth/dash',{data});
-                                                                // response.json(data);   
+                                                                // response.json(data);
                                                        });
-                                              
-                                               
+
+
                                          });
-                                              
+
                                          });
-                                              
+
                                          });
-                                              
+
                                         }
-                                       
+
                                     });
                                 }
- 
+
                             });
                     }
-                
+
                 });
             }
-        
+
         });
     }
- 
+
  });
- 
-   
+
+
  });
 
 
