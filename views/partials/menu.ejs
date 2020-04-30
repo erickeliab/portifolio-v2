@@ -5,15 +5,16 @@
 	<div class="">
 		<ul>
 		
-			<li class="btn bg-white mb-2" style="border-color: green; width: 100px;"><a href="/" class="text-success" style=""><i class="fa fa-home" aria-hidden="true"></i> home </a></li>
+        	<li class="mt-2"><a href="/" class=""><small class="text-dark <%- route == 'index' ? 'activ' : 'menui' %>  ">  <i class="fa fa-home" aria-hidden="true"></i> Home</small> </a></li>
 
-			<li class="mt-2"><a href="/about"><small class="text-dark menui"><i class="fa fa-info-circle" aria-hidden="true"></i> about</small> </a></li>
-        	<li class="mt-2"><a href="/services" class=""><small class="text-dark menui"><i class="fa fa-list" aria-hidden="true"></i> services</small> </a></li>
-				<li class="mt-2"><a href="/contacts"><small class="text-dark menui"><i class="fas fa-address-book"></i> contact</small> </a></li>
-				<li class="mt-2"><a href="/projectz"><small class="text-dark menui"><i class="fas fa-project-diagram"></i> projects</small></a></li>
-				<li class="mt-2"><a href="/skillz"><small class="text-dark menui"><i class="fa fa-cogs" aria-hidden="true"></i>
- 					skills</small> </a></li>
-				<li class="mt-2"><a href="/users/login"><small class="text-dark menui"><i class="fas fa-user"></i> admin</small> </a></li>
+        	<li class="mt-2"><a href="/services" class=""><small class="text-dark <%- route == 'services' ? 'activ' : 'menui' %>  ">  <i class="fa fa-list" aria-hidden="true"></i> Services</small> </a></li>
+				<li class="mt-2"><a href="/projectz"><small class="text-dark <%- route == 'projects' ? 'activ' : 'menui' %>  ">  <i class="fas fa-project-diagram"></i> Projects</small></a></li>
+				<li class="mt-2"><a href="/skillz"><small class="text-dark <%- route == 'skills' ? 'activ' : 'menui' %>  ">  <i class="fa fa-cogs" aria-hidden="true"></i>
+					 Skills</small> </a></li>
+					 <li class="mt-2"><a href="/about"><small class="text-dark <%- route == 'about' ? 'activ' : 'menui' %> ">  <i class="fa fa-info-circle" aria-hidden="true"></i> About</small> </a></li>
+					 <li class="mt-2"><a href="/contacts"><small class="text-dark <%- route == 'contacts' ? 'activ' : 'menui' %>  ">  <i class="fas fa-address-book"></i> Contact</small> </a></li>
+
+				<li class="mt-2"><a href="/users/login"><small class="text-dark  <%- route == 'login' ? 'activ' : 'menui' %> ">  <i class="fas fa-user"></i> Admin</small> </a></li>
 
 			</ul>
 
@@ -23,9 +24,9 @@
 		<small class="m-3 text-dark">+255 754 385 888</small>
 		<div class="menu_social">
 			<ul class="menu_social_list d-flex flex-row align-items-start justify-content-start">
-				<li><a href="https://web.facebook.com/erick.eliab"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
-				<li><a href="https://tz.linkedin.com/in/erick-mgongo-89848b172"><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
-				<li><a href="https://tz.linkedin.com/in/erick-mgongo-89848b172">				<i class="fa fa-phone" aria-hidden="true"></i>
+				<li><a ><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+				<li><a ><i class="fa fa-envelope" aria-hidden="true"></i></a></li>
+				<li><a >				<i class="fa fa-phone" aria-hidden="true"></i>
 				</a></li>
 
 			</ul>

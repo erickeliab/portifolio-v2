@@ -25,7 +25,7 @@ router.get('/', ensureAuthenticated , (req,res) => {
     if (err) {
         res.status(404,{msg: 'The services were not found'});
     }else {
-        console.log(services);
+       
         res.render('auth/Services/allservices',{services});
     }
 });
@@ -58,7 +58,7 @@ Service.findOne({'id' : req.params.s}, (err,service) => {
     }else {
 
        //res.send(req.params.s);
-       console.log(service);
+      
        res.render('auth/Services/singleservice',{service});
 
     }
@@ -81,7 +81,7 @@ router.get('/delete/:s', (req,res) =>{
         }else {
 
            //res.send(req.params.s);
-           console.log(service);
+           
            res.render('auth/Services/deleteserv',{service});
 
         }
@@ -109,7 +109,7 @@ router.get('/delete/:s', (req,res) =>{
                     }else {
 
                        //res.send(req.params.s);
-                       console.log(service);
+                      
                        res.render('auth/Services/updateservice',{service,skills});
 
                     }
@@ -296,7 +296,7 @@ router.put('/:s', upload.single('imgpath'), (req,res) =>{
                     }else {
 
                        //res.send(req.params.s);
-                       console.log(service);
+                      
                        res.render('auth/Services/updateservice',{service,skills,errors});
 
                     }

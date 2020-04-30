@@ -20,7 +20,7 @@ let Skill = require('../../Models/Skill');
 // const tota = Skill.Collection.countDocuments({}, function(err,count){
         
 //         return count;
-//         console.log(count);
+//         
 //     });
    
 

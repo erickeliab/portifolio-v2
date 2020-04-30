@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 // Load User model
 const User = require('../Models/User');
+const Cv = require('../Models/Cv');
 const { forwardAuthenticated } = require('../config/auth');
 const { ensureAuthenticated } = require('../config/auth');
 
@@ -16,7 +17,22 @@ router.get('/',(req,res) => {
   
 })
 // Login Page
-router.get('/login', forwardAuthenticated, (req, res) => res.render('auth/login'));
+router.get('/login', forwardAuthenticated, (req, res) => {
+  Cv.find({}, (err,cv) => {
+    if (err) {
+        res.status(404,{msg: 'The services were not found'});
+    }else{
+        let data = {
+            cv
+        }
+        var route = 'login';
+        res.render('auth/login',{data,route});
+           
+    }
+
+});
+  
+} );
 
 // Register Page
 // router.get('/register',ensureAuthenticated, forwardAuthenticated, (req, res) => res.render('auth/register'));

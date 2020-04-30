@@ -41,7 +41,7 @@ router.get('/edit', (req,res) => {
             res.status(404,{msg: 'The services were not found'});
         }else {
             let profile = profileA[0];
-            console.log(profile);
+            
             res.render('auth/Profile/updateprofile',{profile});
         }
     });
@@ -79,7 +79,7 @@ router.put('/:s',  upload.single('profileimg'), (req,res) => {
             res.status(404,{msg: 'The services were not found'});
         }else {
             let profile = profileA[0];
-            console.log(profile);
+          
             res.render('auth/Profile/updateprofile',{profile,errors});
         }
     });

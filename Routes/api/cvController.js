@@ -22,7 +22,7 @@ let Cv = require('../../Models/Cv');
 mongoose.set('useFindAndModify', false);
 router.use(methodOverride('_method'));
 // mongoose.set( 'useUnifiedTopology', true );
-
+router.use(ensureAuthenticated);
 
 router.get('/', (req,res) => {
     //Querying through model

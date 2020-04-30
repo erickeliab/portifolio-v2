@@ -10,14 +10,22 @@ var Service = require('../Models/Service');
 var Cv = require('../Models/Cv');
 var Skill = require('../Models/Skill');
 var Message = require('../Models/Message');
+var Logger = require('../Models/Logger');
 
 
 
 
+router.get('/logs',ensureAuthenticated,(req,res) => {
 
+    Logger.find({},(err,logs)=> {
+        return res.send(logs);
+    });
+});
 
 
 router.get('/', (request,response) => {
+
+
 //projects
 Project.find({}, (err,projects) => {
     if (err) {
@@ -50,10 +58,18 @@ Project.find({}, (err,projects) => {
                                                 cv,
                                                 services
                                             }
-                                          
-                                            response.render('index',{data});
+                                            var route = 'index';
+                                            response.render('index',{data,route});
+                                            
                                                 // response.json(data);
-                                        }
+
+
+
+                                                var log = new Logger();
+                                                    var today = new Date();
+                                                    log.date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+ '::' + today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+                                                    log.save();
+                                            }
 
                                     });
                                 }
@@ -108,8 +124,8 @@ Project.find({}, (err,projects) => {
                                                 cv,
                                                 services
                                             }
-                                            console.log(data);
-                                            res.render('about',{data});
+                                            var route = 'about';
+                                            res.render('about',{data,route});
                                                 // response.json(data);
                                         }
 
@@ -166,8 +182,8 @@ Project.find({}, (err,projects) => {
                                                 cv,
                                                 services
                                             }
-                                            console.log(data);
-                                            res.render('projects',{data});
+                                            var route = 'projects';
+                                            res.render('projects',{data,route});
                                                 // response.json(data);
                                         }
 
@@ -227,8 +243,9 @@ Project.find({id : req.params.id}, (err,projects) => {
                                                 services
                                             }
                                             var project = projects[0];
-                                            console.log(projects);
-                                            res.render('projectssingle',{data,project});
+                                            var route = 'projects';
+                                           
+                                            res.render('projectssingle',{data,project,route});
                                                 // response.json(data);
                                         }
 
@@ -284,8 +301,8 @@ Project.find({}, (err,projects) => {
                                                 cv,
                                                 services
                                             }
-                                            console.log(data);
-                                            res.render('skills',{data});
+                                            var route = 'skills';
+                                            res.render('skills',{data,route});
                                                 // response.json(data);
                                         }
 
@@ -308,9 +325,17 @@ Project.find({}, (err,projects) => {
 router.get('/services', function(req,res){
     //generating services information from database through the model
     Service.find({},(err,services) => {
-        console.log(services);
-        res.render('services',{services});
-
+        Cv.find({}, (err,cv) => {
+            if (err) {
+                res.status(404,{msg: 'The services were not found'});
+            }else{
+        let data = {
+            cv
+        }
+        var route = 'services';
+        res.render('services',{services,route,data});
+    }
+    });
     });
 });
 
@@ -320,8 +345,17 @@ router.get('/services/:id', function(req,res){
     //generating services information from database through the model
     Service.find({id : req.params.id},(err,services) => {
         var service = services[0];
-        res.render('servicesingle',{service});
-
+        var route = 'services';
+        Cv.find({}, (err,cv) => {
+            if (err) {
+                res.status(404,{msg: 'The services were not found'});
+            }else{
+        let data = {
+            cv
+        }
+        res.render('servicesingle',{service,route,data});
+    }
+    });
     });
 });
 
@@ -336,8 +370,11 @@ router.get('/contacts', function(req,res){
                     res.status(404);
                 } else
                 {
-
-                    res.render('contacts',{profile , cv});
+                    let data = {
+                        cv
+                    }
+                    var route = 'contacts';
+                    res.render('contacts',{profile , cv,route,data});
 
                 }
             })
@@ -348,6 +385,9 @@ router.get('/contacts', function(req,res){
 });
 
 router.get('/dash', ensureAuthenticated , (req,res) => {
+    //logs
+    Logger.count({},(err,logs)=> {
+    
     //projects
  Project.find({}, (err,projects) => {
     if (err) {
@@ -392,11 +432,12 @@ router.get('/dash', ensureAuthenticated , (req,res) => {
                                                                  no_project,
                                                                  no_services,
                                                                  no_messages,
-                                                                 no_skills
+                                                                 no_skills,
+                                                                 logs
 
                                                              }
 
-                                                            console.log(data);
+                                                           
                                                             res.render('auth/dash',{data});
                                                                 // response.json(data);
                                                        });
@@ -424,6 +465,7 @@ router.get('/dash', ensureAuthenticated , (req,res) => {
 
  });
 
+});
 
  });
 

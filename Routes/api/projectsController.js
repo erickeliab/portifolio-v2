@@ -143,7 +143,7 @@ router.post('/', (req,res) => {
             if (err) throw err;
     
             if(doc) {
-                 return  res.redirect(`/projects/${req.body.id}`);
+                 return  res.redirect(`/projects`);
             }
         });
 
@@ -185,7 +185,7 @@ router.get('/:id', function(req,res){
         }
         else if (projects){
             let project = projects[req.params.id - 1];
-            console.log(project);
+           
             res.render('auth/Project/singleproject',{project});
         }
     });
@@ -275,7 +275,7 @@ router.put('/:id', (req,res) => {
             p.Links =  [ github, production ];
             p.save();
 
-            console.log(p);
+          
 
              res.redirect('/projects');
 
