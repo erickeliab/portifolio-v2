@@ -2,8 +2,12 @@
         <div class="card-deck">
                 <div class="card">
                   <div class="card-body">
-                    <h2 class="card-title text-dark"><%= data.services[0].head %></h2>
-                  <p class="card-text"><%= data.services[0].bodytext %></p>
+                    <h2 class="card-title text-dark"><%= data.services[0].head %>
+                    
+                    </h2>
+                  <p class="card-text"><%= data.services[0].bodytext.substring(0,120) %>..
+                    <a href="services/<%= data.services[0].id %>" class=" btn btn-sm btn-default text-success ml-2 bg-white" style="text-decoration: none;"><small>read more</small> </a>
+                  </p>
                 </div>
                   <img src="<%= data.services[0].imgpath %>" style="height: 220px;" class="card-img-top" alt="...">
 
@@ -12,7 +16,11 @@
                 <div class="card">
                   <div class="card-body">
                     <h2 class="card-title text-dark"><%= data.services[1].head %></h2>
-                    <p class="card-text"><%= data.services[1].bodytext %></p>
+                    <p class="card-text"><%= data.services[1].bodytext.substring(0,120) %>..
+                      <a href="services/<%= data.services[1].id %>" class=" btn btn-sm btn-default text-success ml-2 bg-white" style="text-decoration: none;"><small>read more</small></a>
+
+                    </p>
+
                    </div>
                   <img src="<%= data.services[1].imgpath %>" style="height: 220px;" class="card-img-top" alt="...">
 
@@ -21,7 +29,10 @@
                 <div class="card">
                   <div class="card-body">
                     <h2 class="card-title text-dark"><%= data.services[2].head %></h2>
-                    <p class="card-text"><%= data.services[2].bodytext %></p>
+                    <p class="card-text"><%= data.services[2].bodytext.substring(0,120) %>..
+                      <a href="services/<%= data.services[2].id %>" class=" btn btn-sm btn-default text-success ml-2 bg-white" style="text-decoration: none;"><small>read more</small></a>
+
+                    </p>
                    </div>
                   <img src="<%= data.services[2].imgpath %>" style="height: 220px;" class="card-img-top" alt="...">
 

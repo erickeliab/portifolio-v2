@@ -8,7 +8,7 @@ const { ensureAuthenticated } = require('../../config/auth');
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-      cb(null, 'public/cv/')
+      cb(null, 'public/cvs/')
     },
     filename: function (req, file, cb) {
       cb(null, Date.now() + '.pdf') //Appending .jpg
@@ -75,7 +75,7 @@ if (req.file) {
     
 
     var updatedcv = {} ;
-    updatedcv.path = `cv/${req.file.filename}`;
+    updatedcv.path = `cvs/${req.file.filename}`;
 
     Cv.findOneAndUpdate({'id' : req.params.id}, updatedcv, {upsert : true}, (err,cv) => {
         if (err) throw err;

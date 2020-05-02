@@ -1,10 +1,22 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
 let mongoose = require('mongoose');
 const methodOverride = require('method-override');
 
 const multer = require('multer');
-let upload = multer({dest : 'public/images/'});
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, 'public/images/')
+    },
+    filename: function (req, file, cb) {
+      cb(null, Date.now() + path.extname(file.originalname)) //Appending .jpg
+    }
+  })
+  
+  var upload = multer({ storage: storage });
+
 
 const { ensureAuthenticated } = require('../../config/auth');
 
