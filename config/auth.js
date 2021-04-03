@@ -10,6 +10,6 @@ module.exports = {
     if (!req.isAuthenticated()) {
       return next();
     }
-    res.redirect('/dash');      
+    res.redirect('http://erickmgongo.com/dash');      
   }
 };
